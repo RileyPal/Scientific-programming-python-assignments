@@ -20,6 +20,9 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="GitToolBoxStore">
+    <option name="projectConfigVersion" value="5" />
+  </component>
   <component name="ProblemsViewState">
     <option name="selectedTabId" value="CurrentFile" />
   </component>
@@ -35,44 +38,44 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Python.calculate_egg_cook_time.executor": "Run",
-    "Python.calculate_interest_growth.executor": "Run",
-    "Python.calculate_liter_mass.executor": "Run",
-    "Python.convert_celsius_temperature_to_fahrenheit.executor": "Run",
-    "Python.convert_length.executor": "Run",
-    "Python.generate_coordinate_grid.executor": "Run",
-    "Python.scratch.executor": "Run",
-    "Python.scratch_1.executor": "Run",
-    "Python.scratch_2.executor": "Run",
-    "Python.scratch_3.executor": "Run",
-    "Python.scratch_4.executor": "Run",
-    "Python.sum_integer.executor": "Run",
-    "Python.sum_integer_reciprocals_using_while.executor": "Run",
-    "Python.sum_integer_reciprocals_using_wile.executor": "Debug",
-    "Python.table_temperature_conversion_and_approximation.executor": "Run",
-    "Python.table_temperature_conversion_with_while.executor": "Run",
-    "Python.table_vertical_projectile_positions.executor": "Run",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "master",
-    "ignore.virus.scanning.warn.message": "true",
-    "last_opened_file_path": "//wsl.localhost/Ubuntu/home/riley2003/functions_and_branching",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "settings.sync",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Python.calculate_egg_cook_time.executor&quot;: &quot;Run&quot;,
+    &quot;Python.calculate_interest_growth.executor&quot;: &quot;Run&quot;,
+    &quot;Python.calculate_liter_mass.executor&quot;: &quot;Run&quot;,
+    &quot;Python.convert_celsius_temperature_to_fahrenheit.executor&quot;: &quot;Run&quot;,
+    &quot;Python.convert_length.executor&quot;: &quot;Run&quot;,
+    &quot;Python.generate_coordinate_grid.executor&quot;: &quot;Run&quot;,
+    &quot;Python.scratch.executor&quot;: &quot;Run&quot;,
+    &quot;Python.scratch_1.executor&quot;: &quot;Run&quot;,
+    &quot;Python.scratch_2.executor&quot;: &quot;Run&quot;,
+    &quot;Python.scratch_3.executor&quot;: &quot;Run&quot;,
+    &quot;Python.scratch_4.executor&quot;: &quot;Run&quot;,
+    &quot;Python.sum_integer.executor&quot;: &quot;Run&quot;,
+    &quot;Python.sum_integer_reciprocals_using_while.executor&quot;: &quot;Run&quot;,
+    &quot;Python.sum_integer_reciprocals_using_wile.executor&quot;: &quot;Debug&quot;,
+    &quot;Python.table_temperature_conversion_and_approximation.executor&quot;: &quot;Run&quot;,
+    &quot;Python.table_temperature_conversion_with_while.executor&quot;: &quot;Run&quot;,
+    &quot;Python.table_vertical_projectile_positions.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;//wsl.localhost/Ubuntu/home/riley2003/functions_and_branching&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;settings.sync&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
-  "keyToStringList": {
-    "com.intellij.ide.scratch.ScratchImplUtil$2/New Scratch File": [
-      "Python"
+  &quot;keyToStringList&quot;: {
+    &quot;com.intellij.ide.scratch.ScratchImplUtil$2/New Scratch File&quot;: [
+      &quot;Python&quot;
     ]
   }
-}]]></component>
+}</component>
   <component name="RunDashboard">
     <option name="configurationTypes">
       <set>
@@ -84,7 +87,7 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-python-sdk-5a2391486177-2887949eec09-com.jetbrains.pycharm.pro.sharedIndexes.bundled-PY-233.13763.11" />
+        <option value="bundled-python-sdk-d68999036c7f-b11f5e8da5ad-com.jetbrains.pycharm.pro.sharedIndexes.bundled-PY-233.14475.56" />
       </set>
     </attachedChunks>
   </component>
@@ -107,6 +110,7 @@
       <workItem from="1709223303882" duration="12543000" />
       <workItem from="1709238183425" duration="3164000" />
       <workItem from="1709659952090" duration="4771000" />
+      <workItem from="1709751858330" duration="67000" />
     </task>
     <task id="LOCAL-00001" summary="progress on 1-9">
       <option name="closed" value="true" />
