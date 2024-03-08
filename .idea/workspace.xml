@@ -4,7 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="78b3dbee-a923-497c-ad01-204df1a1427a" name="Changes" comment="progress on loops and lists" />
+    <list default="true" id="78b3dbee-a923-497c-ad01-204df1a1427a" name="Changes" comment="progress on loops and lists">
+      <change afterPath="$PROJECT_DIR$/functions_and_branching/calculate_quadratic_roots.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -18,7 +22,26 @@
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="master" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+  "lastFilter": {
+    "state": "OPEN",
+    "assignee": "RileyPal"
+  }
+}]]></component>
+  <component name="GithubPullRequestsUISettings">
+    <option name="selectedUrlAndAccountId">
+      <UrlAndAccount>
+        <option name="accountId" value="b826fcd4-8579-4753-93f4-3bcece64d2ed" />
+        <option name="url" value="https://github.com/RileyPal/experiment.git" />
+      </UrlAndAccount>
+    </option>
   </component>
   <component name="ProblemsViewState">
     <option name="selectedTabId" value="CurrentFile" />
@@ -40,6 +63,7 @@
     "Python.calculate_egg_cook_time.executor": "Run",
     "Python.calculate_interest_growth.executor": "Run",
     "Python.calculate_liter_mass.executor": "Run",
+    "Python.calculate_quadratic_roots.executor": "Run",
     "Python.convert_celsius_temperature_to_fahrenheit.executor": "Run",
     "Python.convert_length.executor": "Run",
     "Python.generate_coordinate_grid.executor": "Run",
@@ -58,6 +82,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "git-widget-placeholder": "master",
     "ignore.virus.scanning.warn.message": "true",
+    "ignore_missing_gitignore": "true",
     "last_opened_file_path": "//wsl.localhost/Ubuntu/home/riley2003/functions_and_branching",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
@@ -170,12 +195,17 @@
           <line>7</line>
           <option name="timeStamp" value="1" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$APPLICATION_CONFIG_DIR$/scratches/scratch.py</url>
+          <line>25</line>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
       </breakpoints>
       <default-breakpoints>
         <breakpoint type="javascript-exception">
           <dependency master-id="0" />
         </breakpoint>
-        <breakpoint enabled="true" type="python-exception">
+        <breakpoint type="python-exception">
           <dependency id="0" />
           <properties notifyOnTerminate="true" exception="BaseException">
             <option name="notifyOnTerminate" value="true" />
@@ -185,23 +215,24 @@
     </breakpoint-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/experiment$table_temperature_conversion_with_while.coverage" NAME="table_temperature_conversion_with_while Coverage Results" MODIFIED="1708631327576" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Loops_and_Lists" />
-    <SUITE FILE_PATH="coverage/experiment$sum_integer.coverage" NAME="sum_integer Coverage Results" MODIFIED="1709226063519" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Loops_and_Lists" />
-    <SUITE FILE_PATH="coverage/experiment$table_vertical_projectile_positions.coverage" NAME="table_vertical_projectile_positions Coverage Results" MODIFIED="1709662002372" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Loops_and_Lists" />
     <SUITE FILE_PATH="coverage/experiment$scratch_2.coverage" NAME="scratch_2 Coverage Results" MODIFIED="1707502551706" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$APPLICATION_CONFIG_DIR$/scratches" />
-    <SUITE FILE_PATH="coverage/experiment$convert_celsius_temperature_to_fahrenheit.coverage" NAME="convert_celsius_temperature_to_fahrenheit Coverage Results" MODIFIED="1709239949364" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/functions_and_branching" />
+    <SUITE FILE_PATH="coverage/experiment$calculate_quadratic_roots.coverage" NAME="calculate_quadratic_roots Coverage Results" MODIFIED="1709937474181" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/functions_and_branching" />
     <SUITE FILE_PATH="coverage/experiment$convert_length.coverage" NAME="convert_length Coverage Results" MODIFIED="1707504025105" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$APPLICATION_CONFIG_DIR$/scratches" />
-    <SUITE FILE_PATH="coverage/experiment$calculate_liter_mass.coverage" NAME="calculate_liter_mass Coverage Results" MODIFIED="1707505434474" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$APPLICATION_CONFIG_DIR$/scratches" />
+    <SUITE FILE_PATH="coverage/experiment$table_vertical_projectile_positions.coverage" NAME="table_vertical_projectile_positions Coverage Results" MODIFIED="1709662002372" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Loops_and_Lists" />
     <SUITE FILE_PATH="coverage/experiment$add_two_numbers.coverage" NAME="add_two_numbers Coverage Results" MODIFIED="1707929509751" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/experiment$sum_integer_reciprocals_using_wile.coverage" NAME="sum_integer_reciprocals_using_wile Coverage Results" MODIFIED="1709662427256" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Loops_and_Lists" />
-    <SUITE FILE_PATH="coverage/experiment$calculate_interest_growth.coverage" NAME="calculate_interest_growth Coverage Results" MODIFIED="1709660016267" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$APPLICATION_CONFIG_DIR$/scratches" />
-    <SUITE FILE_PATH="coverage/experiment$scratch.coverage" NAME="scratch Coverage Results" MODIFIED="1707858487149" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$APPLICATION_CONFIG_DIR$/scratches" />
+    <SUITE FILE_PATH="coverage/experiment$calculate_liter_mass.coverage" NAME="calculate_liter_mass Coverage Results" MODIFIED="1707505434474" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$APPLICATION_CONFIG_DIR$/scratches" />
+    <SUITE FILE_PATH="coverage/experiment$scratch_1.coverage" NAME="scratch_1 Coverage Results" MODIFIED="1707502517815" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$APPLICATION_CONFIG_DIR$/scratches" />
+    <SUITE FILE_PATH="coverage/experiment$scratch.coverage" NAME="scratch Coverage Results" MODIFIED="1709932029933" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$APPLICATION_CONFIG_DIR$/scratches" />
     <SUITE FILE_PATH="coverage/experiment$generate_coordinate_grid.coverage" NAME="generate_coordinate_grid Coverage Results" MODIFIED="1709661575935" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Loops_and_Lists" />
+    <SUITE FILE_PATH="coverage/experiment$sum_integer_reciprocals_using_while.coverage" NAME="sum_integer_reciprocals_using_while Coverage Results" MODIFIED="1709664629471" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Loops_and_Lists" />
+    <SUITE FILE_PATH="coverage/experiment$sum_integer_reciprocals_using_wile.coverage" NAME="sum_integer_reciprocals_using_wile Coverage Results" MODIFIED="1709662427256" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Loops_and_Lists" />
+    <SUITE FILE_PATH="coverage/experiment$table_temperature_conversion_and_approximation.coverage" NAME="table_temperature_conversion_and_approximation Coverage Results" MODIFIED="1709226086620" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Loops_and_Lists" />
+    <SUITE FILE_PATH="coverage/experiment$table_temperature_conversion_with_while.coverage" NAME="table_temperature_conversion_with_while Coverage Results" MODIFIED="1708631327576" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Loops_and_Lists" />
+    <SUITE FILE_PATH="coverage/experiment$calculate_interest_growth.coverage" NAME="calculate_interest_growth Coverage Results" MODIFIED="1709660016267" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$APPLICATION_CONFIG_DIR$/scratches" />
+    <SUITE FILE_PATH="coverage/experiment$scratch_4.coverage" NAME="scratch_4 Coverage Results" MODIFIED="1707502656721" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$APPLICATION_CONFIG_DIR$/scratches" />
+    <SUITE FILE_PATH="coverage/experiment$convert_celsius_temperature_to_fahrenheit.coverage" NAME="convert_celsius_temperature_to_fahrenheit Coverage Results" MODIFIED="1709928855629" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/functions_and_branching" />
+    <SUITE FILE_PATH="coverage/experiment$sum_integer.coverage" NAME="sum_integer Coverage Results" MODIFIED="1709226063519" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Loops_and_Lists" />
     <SUITE FILE_PATH="coverage/experiment$scratch_3.coverage" NAME="scratch_3 Coverage Results" MODIFIED="1707502609771" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$APPLICATION_CONFIG_DIR$/scratches" />
     <SUITE FILE_PATH="coverage/experiment$calculate_egg_cook_time.coverage" NAME="calculate_egg_cook_time Coverage Results" MODIFIED="1708631317612" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$APPLICATION_CONFIG_DIR$/scratches" />
-    <SUITE FILE_PATH="coverage/experiment$table_temperature_conversion_and_approximation.coverage" NAME="table_temperature_conversion_and_approximation Coverage Results" MODIFIED="1709226086620" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Loops_and_Lists" />
-    <SUITE FILE_PATH="coverage/experiment$scratch_1.coverage" NAME="scratch_1 Coverage Results" MODIFIED="1707502517815" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$APPLICATION_CONFIG_DIR$/scratches" />
-    <SUITE FILE_PATH="coverage/experiment$scratch_4.coverage" NAME="scratch_4 Coverage Results" MODIFIED="1707502656721" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$APPLICATION_CONFIG_DIR$/scratches" />
-    <SUITE FILE_PATH="coverage/experiment$sum_integer_reciprocals_using_while.coverage" NAME="sum_integer_reciprocals_using_while Coverage Results" MODIFIED="1709664629471" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Loops_and_Lists" />
   </component>
 </project>
