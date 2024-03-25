@@ -4,7 +4,7 @@ import convert_temperature
 
 def main():
     if len(sys.argv) != 3:
-        print("Usage: PycharmProjects\experiment\user_input_and_error_handling\convert_temp.py <temperature> <scale>")
+        print(r"Usage: PycharmProjects\experiment\user_input_and_error_handling\convert_temp.py <temperature> <scale>")
         print("Example: python convert_temperature.py 21.3 C")
         return
 
