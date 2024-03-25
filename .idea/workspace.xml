@@ -4,17 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="78b3dbee-a923-497c-ad01-204df1a1427a" name="Changes" comment="progress on functions and branching">
-      <change afterPath="$PROJECT_DIR$/user_input_and_error_handling/convert_fahrenheit_temperature_to_celsius_from_command_line.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/user_input_and_error_handling/convert_fahrenheit_temperature_to_celsius_from_file.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/user_input_and_error_handling/convert_fahrenheit_temperature_to_celsius_from_input.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/user_input_and_error_handling/convert_temp.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/user_input_and_error_handling/convert_temperature.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/user_input_and_error_handling/convert_temperature_to_celsius_between_file.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/user_input_and_error_handling/output_temperature_data.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/user_input_and_error_handling/temperature_data.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-    </list>
+    <list default="true" id="78b3dbee-a923-497c-ad01-204df1a1427a" name="Changes" comment="progress on functions and branching" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -48,62 +38,62 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Python.build_polynomial_from _product.executor": "Run",
-    "Python.calculate_egg_cook_time.executor": "Run",
-    "Python.calculate_gaussian.executor": "Run",
-    "Python.calculate_interest_growth.executor": "Run",
-    "Python.calculate_liter_mass.executor": "Run",
-    "Python.calculate_numerical_derivatives.executor": "Run",
-    "Python.calculate_piecewise_function.executor": "Run",
-    "Python.calculate_quadratic_roots.executor": "Run",
-    "Python.calculate_vleocity_and_acceleration.executor": "Run",
-    "Python.compute_heaviside.executor": "Run",
-    "Python.construct_polynomial_from _product.executor": "Run",
-    "Python.convert_celsius_temperature_to_fahrenheit.executor": "Run",
-    "Python.convert_fahrenheit_temperature_to_celsius_from_command_line.executor": "Run",
-    "Python.convert_fahrenheit_temperature_to_celsius_from_file.executor": "Run",
-    "Python.convert_length.executor": "Run",
-    "Python.convert_temp.executor": "Run",
-    "Python.convert_temperature.executor": "Run",
-    "Python.convert_temperature_to_celsius_between_file.executor": "Run",
-    "Python.generate_coordinate_grid.executor": "Run",
-    "Python.integrate_by_trapezoids_adaptively.executor": "Run",
-    "Python.scratch.executor": "Run",
-    "Python.scratch_1.executor": "Run",
-    "Python.scratch_2.executor": "Run",
-    "Python.scratch_3.executor": "Run",
-    "Python.scratch_4.executor": "Run",
-    "Python.sort_stars_data.executor": "Run",
-    "Python.sum_integer.executor": "Run",
-    "Python.sum_integer_reciprocals_using_while.executor": "Run",
-    "Python.sum_integer_reciprocals_using_wile.executor": "Debug",
-    "Python.sum_sines.executor": "Run",
-    "Python.table_temperature_conversion_and_approximation.executor": "Run",
-    "Python.table_temperature_conversion_with_while.executor": "Run",
-    "Python.table_vertical_projectile_positions.executor": "Run",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "git-widget-placeholder": "master",
-    "ignore.virus.scanning.warn.message": "true",
-    "ignore_missing_gitignore": "true",
-    "last_opened_file_path": "//wsl.localhost/Ubuntu/home/riley2003/functions_and_branching",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "settings.sync",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Python.build_polynomial_from _product.executor&quot;: &quot;Run&quot;,
+    &quot;Python.calculate_egg_cook_time.executor&quot;: &quot;Run&quot;,
+    &quot;Python.calculate_gaussian.executor&quot;: &quot;Run&quot;,
+    &quot;Python.calculate_interest_growth.executor&quot;: &quot;Run&quot;,
+    &quot;Python.calculate_liter_mass.executor&quot;: &quot;Run&quot;,
+    &quot;Python.calculate_numerical_derivatives.executor&quot;: &quot;Run&quot;,
+    &quot;Python.calculate_piecewise_function.executor&quot;: &quot;Run&quot;,
+    &quot;Python.calculate_quadratic_roots.executor&quot;: &quot;Run&quot;,
+    &quot;Python.calculate_vleocity_and_acceleration.executor&quot;: &quot;Run&quot;,
+    &quot;Python.compute_heaviside.executor&quot;: &quot;Run&quot;,
+    &quot;Python.construct_polynomial_from _product.executor&quot;: &quot;Run&quot;,
+    &quot;Python.convert_celsius_temperature_to_fahrenheit.executor&quot;: &quot;Run&quot;,
+    &quot;Python.convert_fahrenheit_temperature_to_celsius_from_command_line.executor&quot;: &quot;Run&quot;,
+    &quot;Python.convert_fahrenheit_temperature_to_celsius_from_file.executor&quot;: &quot;Run&quot;,
+    &quot;Python.convert_length.executor&quot;: &quot;Run&quot;,
+    &quot;Python.convert_temp.executor&quot;: &quot;Run&quot;,
+    &quot;Python.convert_temperature.executor&quot;: &quot;Run&quot;,
+    &quot;Python.convert_temperature_to_celsius_between_file.executor&quot;: &quot;Run&quot;,
+    &quot;Python.generate_coordinate_grid.executor&quot;: &quot;Run&quot;,
+    &quot;Python.integrate_by_trapezoids_adaptively.executor&quot;: &quot;Run&quot;,
+    &quot;Python.scratch.executor&quot;: &quot;Run&quot;,
+    &quot;Python.scratch_1.executor&quot;: &quot;Run&quot;,
+    &quot;Python.scratch_2.executor&quot;: &quot;Run&quot;,
+    &quot;Python.scratch_3.executor&quot;: &quot;Run&quot;,
+    &quot;Python.scratch_4.executor&quot;: &quot;Run&quot;,
+    &quot;Python.sort_stars_data.executor&quot;: &quot;Run&quot;,
+    &quot;Python.sum_integer.executor&quot;: &quot;Run&quot;,
+    &quot;Python.sum_integer_reciprocals_using_while.executor&quot;: &quot;Run&quot;,
+    &quot;Python.sum_integer_reciprocals_using_wile.executor&quot;: &quot;Debug&quot;,
+    &quot;Python.sum_sines.executor&quot;: &quot;Run&quot;,
+    &quot;Python.table_temperature_conversion_and_approximation.executor&quot;: &quot;Run&quot;,
+    &quot;Python.table_temperature_conversion_with_while.executor&quot;: &quot;Run&quot;,
+    &quot;Python.table_vertical_projectile_positions.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;ignore_missing_gitignore&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;//wsl.localhost/Ubuntu/home/riley2003/functions_and_branching&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;settings.sync&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
-  "keyToStringList": {
-    "com.intellij.ide.scratch.ScratchImplUtil$2/New Scratch File": [
-      "Python"
+  &quot;keyToStringList&quot;: {
+    &quot;com.intellij.ide.scratch.ScratchImplUtil$2/New Scratch File&quot;: [
+      &quot;Python&quot;
     ]
   }
-}]]></component>
+}</component>
   <component name="RunDashboard">
     <option name="configurationTypes">
       <set>
