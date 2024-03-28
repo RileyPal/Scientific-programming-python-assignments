@@ -8,7 +8,7 @@ k = 0.048  # Drag coefficient
 
 
 # Function to calculate acceleration
-def acceleration_function(v, T, angle_deg, mass):  # T here is thrust from engine
+def acceleration_function(v, t, angle_deg, mass, T):  # Added 't' parameter for compatibility with odeint
     theta_rad = np.radians(angle_deg)  # Convert angle to radians
 
     # Constants
@@ -16,21 +16,20 @@ def acceleration_function(v, T, angle_deg, mass):  # T here is thrust from engin
     air_density = 1.225  # Air density at sea level in kg/m^3
     cross_sectional_area = 2.0  # Cross-sectional area in m^2
 
-
     # Calculate drag force magnitude
     v_magnitude = np.sqrt(v[0] ** 2 + v[1] ** 2)
     drag_magnitude = 0.5 * drag_coefficient * air_density * cross_sectional_area * v_magnitude ** 2
 
     # Calculate thrust magnitude
-    T_magnitude = np.sqrt(T[0] ** 2 + T[1] ** 2)
+    T_magnitude = T
 
     # Calculate drag force components
     drag_horizontal = -drag_magnitude * v[0] / v_magnitude
     drag_vertical = -drag_magnitude * v[1] / v_magnitude
 
     # Calculate thrust components
-    T_horizontal = T_magnitude * v[0] / v_magnitude
-    T_vertical = T_magnitude * v[1] / v_magnitude
+    T_horizontal = T_magnitude * np.cos(theta_rad)
+    T_vertical = T_magnitude * np.sin(theta_rad)
 
     # Calculate acceleration components
     a_horizontal = (drag_horizontal / mass) + (T_horizontal / mass)
@@ -44,7 +43,7 @@ def main():
     try:
         # Prompt the user for input values
         initial_velocity = float(input("Enter the initial velocity (m/s) *should really use take off speed at minimum since putting in zero will break the calculations*: "))
-        T = float(input("Enter the max thrust of engine *this is a simplification* (N) ex: J79 afterburner turbojet is 69000 N while afterburner is on:"))
+        T = float(input("Enter the max thrust of engine (N) ex: J79 afterburner turbojet is 69000 N while afterburner is on: "))
         angle_of_attack = float(input("Enter the angle of attack (degrees): "))
         mass = float(input("Enter the mass of the craft (kg) ex: for the f-104 starfighter(template used for drag calculation) use a mass of 6350 kg for mass when its empty: "))
     except ValueError:
@@ -59,7 +58,7 @@ def main():
                           initial_velocity * np.sin(np.radians(angle_of_attack))]
 
     # Integrate the differential equations
-    v = odeint(acceleration_function, initial_conditions, t, args=(angle_of_attack, mass))
+    v = odeint(acceleration_function, initial_conditions, t, args=(angle_of_attack, mass, T))
 
     # Extract horizontal and vertical velocities
     v_horizontal = v[:, 0]
