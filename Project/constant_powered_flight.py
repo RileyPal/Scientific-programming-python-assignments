@@ -1,20 +1,37 @@
 import numpy as np
 import matplotlib.pyplot as plt
-from conditions_vs_altitude import rho
 from scipy.integrate import odeint
 
 # Constants
 g = 9.81  # Gravitational constant (m/s^2)
 k = 0.048  # Drag coefficient
 
+data_table = {
+    "Altitude (m)": [-1000, 0, 1000, 2000, 3000, 4000, 5000, 6000, 7000, 8000, 9000, 10000, 15000, 20000, 25000, 30000, 40000, 50000, 60000, 70000, 80000],
+    "Density (kg/m^3)": [1.347, 1.225, 1.112, 1.007, 0.9093, 0.8194, 0.7364, 0.6601, 0.5900, 0.5258, 0.4671, 0.4135, 0.1948, 0.08891, 0.04008, 0.01841, 0.003996, 0.001027, 0.0003097, 0.00008283, 0.00001846]
+}
+
+
+def air_density_func(y):
+    # Retrieve altitude and density data from the data table
+    altitudes = data_table["Altitude (m)"]
+    densities = data_table["Density (kg/m^3)"]
+
+    # Find the index of the altitude closest to the current altitude y
+    index = min(range(len(altitudes)), key=lambda i: abs(altitudes[i] - y))
+
+    # Return the density corresponding to the nearest altitude
+    rho = densities[index]
+    return rho
 
 # Function to calculate acceleration
-def acceleration_function(v, t, angle_deg, mass, T):  # Added 't' parameter for compatibility with odeint
+# Function to calculate acceleration
+def acceleration_function(v, t, angle_deg, mass, T, y):  # Added 'y' parameter
     theta_rad = np.radians(angle_deg)  # Convert angle to radians
 
     # Constants
     drag_coefficient = 0.05
-    air_density = rho  # Air density at sea level in kg/m^3
+    air_density = air_density_func(y)  # Call air_density_func with current altitude
     cross_sectional_area = 2.0  # Cross-sectional area in m^2
 
     # Calculate drag force magnitude
@@ -39,6 +56,7 @@ def acceleration_function(v, t, angle_deg, mass, T):  # Added 't' parameter for 
     return [a_horizontal, a_vertical]
 
 
+
 # Main function
 def main():
     try:
@@ -54,12 +72,15 @@ def main():
     # Time points for integration (0 to 100 seconds)
     t = np.linspace(0, 1000, 10000)
 
+    # Define initial vertical position
+    y = 0.0  # Assume starting from sea level
+
     # Initial conditions: horizontal and vertical velocities
     initial_conditions = [initial_velocity * np.cos(np.radians(angle_of_attack)),
                           initial_velocity * np.sin(np.radians(angle_of_attack))]
 
     # Integrate the differential equations
-    v = odeint(acceleration_function, initial_conditions, t, args=(angle_of_attack, mass, T))
+    v = odeint(lambda v, t: acceleration_function(v, t, angle_of_attack, mass, T, y), initial_conditions, t)
 
     # Extract horizontal and vertical velocities
     v_horizontal = v[:, 0]
@@ -70,7 +91,7 @@ def main():
 
     # Integrate velocity to get position
     x = np.cumsum(v_horizontal) * (t[1] - t[0])  # Horizontal position
-    y = np.cumsum(v_vertical) * (t[1] - t[0]) - 0.5 * g * t ** 2  # Vertical position
+    y = np.cumsum(v_vertical) * (t[1] - t[0])  # Vertical position
 
     # Plot the velocity and position graphs
     plt.figure(figsize=(12, 8))

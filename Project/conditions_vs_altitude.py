@@ -1,4 +1,4 @@
-import constant_powered_flight
+from constant_powered_flight import y
 
 
 data_table = {
