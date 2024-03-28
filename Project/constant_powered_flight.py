@@ -1,5 +1,6 @@
 import numpy as np
 import matplotlib.pyplot as plt
+from conditions_vs_altitude import rho
 from scipy.integrate import odeint
 
 # Constants
@@ -13,7 +14,7 @@ def acceleration_function(v, t, angle_deg, mass, T):  # Added 't' parameter for 
 
     # Constants
     drag_coefficient = 0.05
-    air_density = 1.225  # Air density at sea level in kg/m^3
+    air_density = rho  # Air density at sea level in kg/m^3
     cross_sectional_area = 2.0  # Cross-sectional area in m^2
 
     # Calculate drag force magnitude
