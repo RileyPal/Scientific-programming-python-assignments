@@ -1,6 +1,6 @@
 import numpy as np
 import matplotlib.pyplot as plt
-from scipy.integrate import odeint
+from scipy.integrate import solve_ivp
 
 # Constants
 g = 9.81  # Gravitational constant (m/s^2)
@@ -26,8 +26,9 @@ def air_density_func(y):
     return rho
 
 # Function to calculate acceleration
-def acceleration_function(v, t, angle_deg, mass, T, y, lifting_area):
-    theta_rad = np.radians(angle_deg)  # Convert angle to radians
+def acceleration_function(t, state, T, lifting_area, angle_of_attack, mass):
+    v, y = state  # Unpack state
+    theta_rad = np.radians(angle_of_attack)  # Convert angle to radians
 
     # Constants
     drag_coefficient = 0.05
@@ -35,7 +36,7 @@ def acceleration_function(v, t, angle_deg, mass, T, y, lifting_area):
     cross_sectional_area = lifting_area  # Cross-sectional area in m^2
 
     # Calculate drag force magnitude
-    v_magnitude = np.sqrt(v[0] ** 2 + v[1] ** 2)
+    v_magnitude = np.abs(v)
     drag_magnitude = 0.5 * drag_coefficient * air_density * cross_sectional_area * v_magnitude ** 2
 
     # Calculate lift force magnitude
@@ -45,25 +46,18 @@ def acceleration_function(v, t, angle_deg, mass, T, y, lifting_area):
     T_magnitude = T
 
     # Calculate drag force components
-    drag_horizontal = -drag_magnitude * v[0] / v_magnitude
-    drag_vertical = -drag_magnitude * v[1] / v_magnitude
+    drag_vertical = -np.sign(v) * drag_magnitude
 
     # Calculate lift force components
-    lift_horizontal = lift_magnitude * np.sin(theta_rad)
     lift_vertical = lift_magnitude * np.cos(theta_rad)
 
     # Calculate thrust components
-    T_horizontal = T_magnitude * np.cos(theta_rad)
     T_vertical = T_magnitude * np.sin(theta_rad)
 
     # Calculate acceleration components
-    a_horizontal = (drag_horizontal + lift_horizontal + T_horizontal) / mass
     a_vertical = (-g + drag_vertical + lift_vertical + T_vertical) / mass
 
-    return [a_horizontal, a_vertical]
-
-
-
+    return [a_vertical, v]  # Return [acceleration, velocity]
 
 # Main function
 def main():
@@ -80,63 +74,84 @@ def main():
         print("Invalid input. Please enter numeric values.")
         return
 
-    # Time points for integration (0 to 100 seconds)
-    t = np.linspace(0, 1000, 10000)
-
     # Define initial vertical position
-    y = 0.0  # Assume starting from sea level
+    y_initial = 0.0  # Assume starting from sea level
 
-    # Initial conditions: horizontal and vertical velocities
-    initial_conditions = [initial_velocity * np.cos(np.radians(angle_of_attack)),
-                          initial_velocity * np.sin(np.radians(angle_of_attack))]
+    # Define initial state
+    state_initial = [initial_velocity, y_initial]
 
-    # Integrate the differential equations
-    v = odeint(lambda v, t: acceleration_function(v, t, angle_of_attack, mass, T, y, lifting_area), initial_conditions,
-               t)
+    # Time span for integration (0 to 100 seconds)
+    t_span = [0, 100]
 
-    # Extract horizontal and vertical velocities
-    v_horizontal = v[:, 0]
-    v_vertical = v[:, 1]
+    # Solve the ODE
+    sol = solve_ivp(lambda t, state: acceleration_function(t, state, T, lifting_area, angle_of_attack, mass),
+                    t_span,
+                    state_initial,
+                    method='RK45',
+                    t_eval=np.linspace(t_span[0], t_span[1], 1000))
 
-    # Calculate velocity magnitude
-    v_magnitude = np.sqrt(v_horizontal ** 2 + v_vertical ** 2)
+    # Extract velocity and position from solution
+    v_values = sol.y[0]
+    y_values = sol.y[1]
 
-    # Integrate velocity to get position
-    x = np.cumsum(v_horizontal) * (t[1] - t[0])  # Horizontal position
-    y = np.cumsum(v_vertical) * (t[1] - t[0])  # Vertical position
+    # Calculate horizontal and vertical components
+    v_horizontal = v_values
+    v_vertical = np.gradient(y_values, sol.t)
+
+    a_horizontal = np.gradient(v_horizontal, sol.t)
+    a_vertical = np.gradient(v_vertical, sol.t)
 
     # Plot the velocity and position graphs
-    plt.figure(figsize=(12, 8))
+    plt.figure(figsize=(12, 12))
 
-    plt.subplot(2, 2, 1)
-    plt.plot(t, v_horizontal, label='Horizontal Velocity')
+    # Velocity plots
+    plt.subplot(3, 2, 1)
+    plt.plot(sol.t, v_horizontal, label='Horizontal Velocity')
     plt.xlabel('Time (s)')
     plt.ylabel('Horizontal Velocity (m/s)')
     plt.title('Horizontal Velocity vs Time')
     plt.grid(True)
     plt.legend()
 
-    plt.subplot(2, 2, 2)
-    plt.plot(t, v_vertical, label='Vertical Velocity', color='orange')
+    plt.subplot(3, 2, 2)
+    plt.plot(sol.t, v_vertical, label='Vertical Velocity', color='orange')
     plt.xlabel('Time (s)')
     plt.ylabel('Vertical Velocity (m/s)')
     plt.title('Vertical Velocity vs Time')
     plt.grid(True)
     plt.legend()
 
-    plt.subplot(2, 2, 3)
-    plt.plot(t, x, label='Horizontal Position', color='green')
+    # Position plots
+    plt.subplot(3, 2, 3)
+    plt.plot(sol.t, v_horizontal * sol.t, label='Horizontal Position', color='green')
     plt.xlabel('Time (s)')
     plt.ylabel('Horizontal Position (m)')
     plt.title('Horizontal Position vs Time')
     plt.grid(True)
     plt.legend()
 
-    plt.subplot(2, 2, 4)
-    plt.plot(t, y, label='Vertical Position', color='red')
+    plt.subplot(3, 2, 4)
+    plt.plot(sol.t, y_values, label='Vertical Position', color='red')
     plt.xlabel('Time (s)')
     plt.ylabel('Vertical Position (m)')
     plt.title('Vertical Position vs Time')
+    plt.grid(True)
+    plt.legend()
+
+    # Acceleration plots
+    plt.subplot(3, 2, 5)
+    plt.plot(sol.t, a_horizontal, label='Horizontal Acceleration', color='purple')
+    plt.xlabel('Time (s)')
+    plt.ylabel('Horizontal Acceleration (m/s^2)')
+    plt.title('Horizontal Acceleration vs Time')
+    plt.grid(True)
+    plt.legend()
+
+    plt.subplot(3, 2, 6)
+    plt.plot(sol.t, a_vertical, label='Vertical Acceleration', color='brown')
+    plt.xlabel('Time (s)')
+    plt.ylabel('Vertical Acceleration (m/s^2)')
+    plt.title('Vertical Acceleration vs Time')
     plt.grid(True)
     plt.legend()
 
