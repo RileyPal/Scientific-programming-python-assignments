@@ -5,6 +5,7 @@ from scipy.integrate import odeint
 # Constants
 g = 9.81  # Gravitational constant (m/s^2)
 k = 0.048  # Drag coefficient
+lift_coefficient = 0.8  # Lift coefficient
 
 data_table = {
     "Altitude (m)": [-1000, 0, 1000, 2000, 3000, 4000, 5000, 6000, 7000, 8000, 9000, 10000, 15000, 20000, 25000, 30000, 40000, 50000, 60000, 70000, 80000],
@@ -25,18 +26,20 @@ def air_density_func(y):
     return rho
 
 # Function to calculate acceleration
-# Function to calculate acceleration
-def acceleration_function(v, t, angle_deg, mass, T, y):  # Added 'y' parameter
+def acceleration_function(v, t, angle_deg, mass, T, y, lifting_area):
     theta_rad = np.radians(angle_deg)  # Convert angle to radians
 
     # Constants
     drag_coefficient = 0.05
     air_density = air_density_func(y)  # Call air_density_func with current altitude
-    cross_sectional_area = 2.0  # Cross-sectional area in m^2
+    cross_sectional_area = lifting_area  # Cross-sectional area in m^2
 
     # Calculate drag force magnitude
     v_magnitude = np.sqrt(v[0] ** 2 + v[1] ** 2)
     drag_magnitude = 0.5 * drag_coefficient * air_density * cross_sectional_area * v_magnitude ** 2
+
+    # Calculate lift force magnitude
+    lift_magnitude = lift_coefficient * air_density * lifting_area * v_magnitude ** 2 * np.sin(theta_rad)
 
     # Calculate thrust magnitude
     T_magnitude = T
@@ -45,15 +48,20 @@ def acceleration_function(v, t, angle_deg, mass, T, y):  # Added 'y' parameter
     drag_horizontal = -drag_magnitude * v[0] / v_magnitude
     drag_vertical = -drag_magnitude * v[1] / v_magnitude
 
+    # Calculate lift force components
+    lift_horizontal = lift_magnitude * np.sin(theta_rad)
+    lift_vertical = lift_magnitude * np.cos(theta_rad)
+
     # Calculate thrust components
     T_horizontal = T_magnitude * np.cos(theta_rad)
     T_vertical = T_magnitude * np.sin(theta_rad)
 
     # Calculate acceleration components
-    a_horizontal = (drag_horizontal / mass) + (T_horizontal / mass)
-    a_vertical = -g + (drag_vertical / mass) + (T_vertical / mass)
+    a_horizontal = (drag_horizontal + lift_horizontal + T_horizontal) / mass
+    a_vertical = (-g + drag_vertical + lift_vertical + T_vertical) / mass
 
     return [a_horizontal, a_vertical]
+
 
 
 
@@ -61,10 +69,13 @@ def acceleration_function(v, t, angle_deg, mass, T, y):  # Added 'y' parameter
 def main():
     try:
         # Prompt the user for input values
-        initial_velocity = float(input("Enter the initial velocity (m/s) *should really use take off speed at minimum since putting in zero will break the calculations*: "))
-        T = float(input("Enter the max thrust of engine (N) ex: J79 afterburner turbojet is 69000 N while afterburner is on: "))
+        initial_velocity = float(input("Enter the initial velocity (m/s) for f104 use 100 m/s: "))
+        T = float(input(
+            "Enter the max thrust of engine (N) ex: J79 afterburner turbojet is 79600 N while afterburner is on: "))
         angle_of_attack = float(input("Enter the angle of attack (degrees): "))
-        mass = float(input("Enter the mass of the craft (kg) ex: for the f-104 starfighter(template used for drag calculation) use a mass of 6350 kg for mass when its empty: "))
+        mass = float(input(
+            "Enter the mass of the craft (kg) ex: for the f-104 starfighter(template used for drag calculation) use a mass of 6350 kg for mass when its empty: "))
+        lifting_area = float(input("Enter the lifting area (m^2) ex: f104 starfighter had a lifting area of 18.2 m^2: "))
     except ValueError:
         print("Invalid input. Please enter numeric values.")
         return
@@ -80,7 +91,8 @@ def main():
                           initial_velocity * np.sin(np.radians(angle_of_attack))]
 
     # Integrate the differential equations
-    v = odeint(lambda v, t: acceleration_function(v, t, angle_of_attack, mass, T, y), initial_conditions, t)
+    v = odeint(lambda v, t: acceleration_function(v, t, angle_of_attack, mass, T, y, lifting_area), initial_conditions,
+               t)
 
     # Extract horizontal and vertical velocities
     v_horizontal = v[:, 0]
