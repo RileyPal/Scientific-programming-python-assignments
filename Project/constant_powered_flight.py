@@ -65,7 +65,7 @@ def main():
         # Prompt the user for input values
         initial_velocity = float(input("Enter the initial velocity (m/s) for f104 use 100 m/s: "))
         T = float(input(
-            "Enter the max thrust of engine (N) ex: J79 afterburner turbojet is 79600 N while afterburner is on: "))
+            "Enter the max thrust of engine (N) ex: J79 afterburner turbojet is 79600 N while afterburner is on, or for use f35 as example which reaches 190000: "))
         angle_of_attack = float(input("Enter the angle of attack (degrees): "))
         mass = float(input(
             "Enter the mass of the craft (kg) ex: for the f-104 starfighter(template used for drag calculation) use a mass of 6350 kg for mass when its empty: "))
