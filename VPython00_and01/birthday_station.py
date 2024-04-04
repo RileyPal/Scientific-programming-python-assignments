@@ -1,4 +1,6 @@
-from vpython import *
+import vpython as vp
+import numpy as np
+from vpython import vector, color, mag, arrow, label, rate, norm
 
 # GlowScript 3.0 VPython
 
@@ -17,7 +19,7 @@ from vpython import *
 
 # These "global" variables must be established before the mouse handling reoutines which set them:
 gotv = False
-v = vector(0, 0, 0)
+v = vp.vector(0, 0, 0)
 pause = False
 rotation = 0
 drag = False
@@ -30,39 +32,39 @@ class spacestation:
         self.h = 2  # height of release of ball above the "floor" of the space station
         self.canvas = whichcanvas
         whichcanvas.select()
-        self.person = cylinder(pos=vector(0, -self.R, 0), axis=vector(0, self.h, 0),
-                               size=vector(self.h, 2 * 0.1, 2 * 0.1))
+        self.person = vp.cylinder(pos=vp.vector(0, -self.R, 0), axis=vp.vector(0, self.h, 0),
+                               size=vp.vector(self.h, 2 * 0.1, 2 * 0.1))
 
         thick = 0.5  # thickness of space station
-        dtheta = 2 * pi / self.N
-        paint = color.red
+        dtheta = 2 * np.pi / self.N
+        paint = vp.color.red
         red = True
         boxes = [self.person]
 
         for i in range(self.N):
             theta = i * dtheta
-            b = box(pos=(self.R + thick / 2) * vector(cos(theta), sin(theta), 0),
-                    size=vector(thick, 2 * (self.R + thick) * sin(dtheta / 2), thick))
+            b = vp.box(pos=(self.R + thick / 2) * vector(np.cos(theta), np.sin(theta), 0),
+                    size=vp.vector(thick, 2 * (self.R + thick) * np.sin(dtheta / 2), thick))
             if red:
-                b.color = color.red
+                b.color = color.purple
                 red = False
             else:
-                b.color = color.blue
+                b.color = color.yellow
                 red = True
-            b.rotate(angle=theta, axis=vector(0, 0, 1))
+            b.rotate(angle=theta, axis=vp.vector(0, 0, 1))
             boxes.append(b)
 
-        self.hull = compound(boxes)
+        self.hull = vp.compound(boxes)
 
-        self.ball = sphere(pos=self.person.pos + self.person.axis,
-                           color=color.cyan, size=2 * 0.2 * vector(1, 1, 1))
+        self.ball = vp.sphere(pos=self.person.pos + self.person.axis,
+                           color=color.orange, size=2 * 0.2 * vector(1, 1, 1))
 
-        self.trail = attach_trail(self.ball, radius=0.1 * self.ball.size.x, pps=10, retain=500)
+        self.trail = vp.attach_trail(self.ball, radius=0.1 * self.ball.size.x, pps=10, retain=500)
         self.reset()
 
     def reset(self):
         global rotation
-        self.hull.rotate(angle=-rotation, axis=vector(0, 0, 1), origin=vector(0, 0, 0))
+        self.hull.rotate(angle=-rotation, axis=vp.vector(0, 0, 1), origin=vector(0, 0, 0))
         self.ball.pos = self.person.pos + self.person.axis
         self.trail.clear()
         rotation = 0
@@ -115,8 +117,8 @@ def bind_mouse(station, vector1, vector2):
     s.bind("mousedown", down)
 
 
-scene1 = canvas(width=430, height=400, align='left', userspin=False, userzoom=False)
-scene2 = canvas(width=430, height=400, align='left', userspin=False, userzoom=False)
+scene1 = vp.canvas(width=430, height=400, align='left', userspin=False, userzoom=False)
+scene2 = vp.canvas(width=430, height=400, align='left', userspin=False, userzoom=False)
 
 scene1.title = """ROTATING SPACE STATION
 Inertial frame on the left, rotating frame on the right."""
@@ -125,7 +127,7 @@ station1 = spacestation(scene1)
 station2 = spacestation(scene2)
 scene1.autoscale = scene2.autoscale = False
 omega = 1  # angular speed of space station; period of rotation is 2*pi/omega
-deltat = 0.001 * 2 * pi / omega
+deltat = 0.001 * 2 * np.pi / omega
 v0 = omega * (station1.R - station1.h)
 scalefactor = 5 / (omega * station1.R)
 v1 = arrow(canvas=scene1, pos=station1.ball.pos, color=color.green,
@@ -187,8 +189,3 @@ while True:
         t += deltat
     click1.visible = click2.visible = True
     pause = True
-    while True:
-        rate(50)
-        if not pause: break
-    gotv = False
-    click1.visible = click2.visible = False
