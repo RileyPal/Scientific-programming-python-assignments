@@ -46,10 +46,10 @@ class spacestation:
             b = vp.box(pos=(self.R + thick / 2) * vector(np.cos(theta), np.sin(theta), 0),
                     size=vp.vector(thick, 2 * (self.R + thick) * np.sin(dtheta / 2), thick))
             if red:
-                b.color = color.red
+                b.color = color.purple
                 red = False
             else:
-                b.color = color.blue
+                b.color = color.yellow
                 red = True
             b.rotate(angle=theta, axis=vp.vector(0, 0, 1))
             boxes.append(b)
@@ -57,7 +57,7 @@ class spacestation:
         self.hull = vp.compound(boxes)
 
         self.ball = vp.sphere(pos=self.person.pos + self.person.axis,
-                           color=color.cyan, size=2 * 0.2 * vector(1, 1, 1))
+                           color=color.orange, size=2 * 0.2 * vector(1, 1, 1))
 
         self.trail = vp.attach_trail(self.ball, radius=0.1 * self.ball.size.x, pps=10, retain=500)
         self.reset()
