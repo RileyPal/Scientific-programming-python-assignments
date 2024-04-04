@@ -8,8 +8,10 @@ k = 0.048  # Drag coefficient
 lift_coefficient = 0.8  # Lift coefficient
 
 data_table = {
-    "Altitude (m)": [-1000, 0, 1000, 2000, 3000, 4000, 5000, 6000, 7000, 8000, 9000, 10000, 15000, 20000, 25000, 30000, 40000, 50000, 60000, 70000, 80000],
-    "Density (kg/m^3)": [1.347, 1.225, 1.112, 1.007, 0.9093, 0.8194, 0.7364, 0.6601, 0.5900, 0.5258, 0.4671, 0.4135, 0.1948, 0.08891, 0.04008, 0.01841, 0.003996, 0.001027, 0.0003097, 0.00008283, 0.00001846]
+    "Altitude (m)": [-1000, 0, 1000, 2000, 3000, 4000, 5000, 6000, 7000, 8000, 9000, 10000, 15000, 20000, 25000, 30000,
+                      40000, 50000, 60000, 70000, 80000],
+    "Density (kg/m^3)": [1.347, 1.225, 1.112, 1.007, 0.9093, 0.8194, 0.7364, 0.6601, 0.5900, 0.5258, 0.4671, 0.4135,
+                         0.1948, 0.08891, 0.04008, 0.01841, 0.003996, 0.001027, 0.0003097, 0.00008283, 0.00001846]
 }
 
 
@@ -25,13 +27,15 @@ def air_density_func(y):
     rho = densities[index]
     return rho
 
+
 # Function to calculate thrust based on air density, velocity, and intake area
 def thrust_function(air_density, velocity, intake_area):
     # Assuming methane is fuel being used with and energy density of 50 MJ/kg of fuel
     # For clarity know that methane requires 4 kg of oxygen for every kg of fuel and has an Isp of 300 seconds
     # Theoretical max thrust/kg of fuel calculation in the form of (mass*energy density*Isp)/g
     # You may replace this with an appropriate model for your application
-    return (((((0.2 * air_density * velocity * intake_area)/4) * 50000000) * 300) / 9.81)
+    return (((((0.2 * air_density * velocity * intake_area) / 4) * 50000000) * 300) / 9.81)
+
 
 # Function to calculate acceleration
 def acceleration_function(t, state, angle_of_attack, mass, lifting_area, intake_area):
@@ -69,83 +73,95 @@ def acceleration_function(t, state, angle_of_attack, mass, lifting_area, intake_
 
     return [a_vertical, v]  # Return [acceleration, velocity]
 
+
 # Main function
 def main():
-    try:
-        # Prompt the user for input values
-        initial_velocity = float(input("Enter the initial velocity (m/s) for f104 use 100 m/s: "))
-        angle_of_attack = float(input("Enter the angle of attack (degrees): "))
-        mass = float(input(
-            "Enter the mass of the craft (kg) ex: for the f-104 starfighter(template used for drag calculation) use a mass of 6350 kg for mass when its empty: "))
-        lifting_area = float(input("Enter the lifting area (m^2) ex: f104 starfighter had a lifting area of 18.2 m^2: "))
-        intake_area = float(input("Enter the intake area (m^2): "))
-    except ValueError:
-        print("Invalid input. Please enter numeric values.")
-        return
+    while True:
+        try:
+            # Prompt the user for input values
+            initial_velocity = float(input("Enter the initial velocity (m/s) for f104 use 100 m/s: "))
+            angle_of_attack = float(input("Enter the angle of attack (degrees): "))
+            mass = float(input(
+                "Enter the mass of the craft (kg) ex: for the f-104 starfighter(template used for drag calculation) use a mass of 6350 kg for mass when its empty: "))
+            lifting_area = float(input("Enter the lifting area (m^2) ex: f104 starfighter had a lifting area of 18.2 m^2: "))
+            intake_area = float(input("Enter the intake area (m^2) *realistically should be somewhere between 0.1-0.5 based on nasas xf43 experimental ramjet craft but is purely an estimate* : "))
+        except ValueError:
+            print("Invalid input. Please enter numeric values.")
+            continue
 
-    # Define initial vertical position
-    y_initial = 0.0  # Assume starting from sea level
+        # Define initial vertical position
+        y_initial = 0.0  # Assume starting from sea level
 
-    # Define initial state
-    state_initial = [initial_velocity, y_initial]
+        # Define initial state
+        state_initial = [initial_velocity, y_initial]
 
-    # Time span for integration (0 to 100 seconds)
-    t_span = [0, 100]
+        # Time span for integration (0 to 100 seconds)
+        t_span = [0, 100]
 
-    # Solve the ODE
-    sol = solve_ivp(lambda t, state: acceleration_function(t, state, angle_of_attack, mass, lifting_area, intake_area),
-                    t_span,
-                    state_initial,
-                    method='RK45',
-                    t_eval=np.linspace(t_span[0], t_span[1], 1000))
+        # Solve the ODE
+        sol = solve_ivp(lambda t, state: acceleration_function(t, state, angle_of_attack, mass, lifting_area, intake_area),
+                        t_span,
+                        state_initial,
+                        method='RK45',
+                        t_eval=np.linspace(t_span[0], t_span[1], 1000))
 
-    # Extract velocity and position from solution
-    v_values = sol.y[0]
-    y_values = sol.y[1]
+        # Extract velocity and position from solution
+        v_values = sol.y[0]
+        y_values = sol.y[1]
 
-    # Calculate horizontal and vertical components
-    v_horizontal = v_values
-    v_vertical = np.gradient(y_values, sol.t)
+        # Calculate horizontal and vertical components
+        v_horizontal = v_values
+        v_vertical = np.gradient(y_values, sol.t)
 
-    # Plot the velocity and position graphs
-    plt.figure(figsize=(12, 8))
+        # Plot the velocity and position graphs
+        plt.figure(figsize=(12, 8))
 
-    # Velocity plots
-    plt.subplot(2, 2, 1)
-    plt.plot(sol.t, v_horizontal, label='Horizontal Velocity')
-    plt.xlabel('Time (s)')
-    plt.ylabel('Horizontal Velocity (m/s)')
-    plt.title('Horizontal Velocity vs Time')
-    plt.grid(True)
-    plt.legend()
+        # Velocity plots
+        plt.subplot(2, 2, 1)
+        plt.plot(sol.t, v_horizontal, label='Horizontal Velocity')
+        plt.xlabel('Time (s)')
+        plt.ylabel('Horizontal Velocity (m/s)')
+        plt.title('Horizontal Velocity vs Time')
+        plt.axhline(y=7672, color='purple', linestyle='--', label='Horizontal Velocity 7672 m/s')
+        plt.grid(True)
+        plt.legend()
 
-    plt.subplot(2, 2, 2)
-    plt.plot(sol.t, v_vertical, label='Vertical Velocity', color='orange')
-    plt.xlabel('Time (s)')
-    plt.ylabel('Vertical Velocity (m/s)')
-    plt.title('Vertical Velocity vs Time')
-    plt.grid(True)
-    plt.legend()
+        plt.subplot(2, 2, 2)
+        plt.plot(sol.t, v_vertical, label='Vertical Velocity', color='orange')
+        plt.xlabel('Time (s)')
+        plt.ylabel('Vertical Velocity (m/s)')
+        plt.title('Vertical Velocity vs Time')
+        plt.grid(True)
+        plt.legend()
 
-    # Position plots
-    plt.subplot(2, 2, 3)
-    plt.plot(sol.t, v_horizontal * sol.t, label='Horizontal Position', color='green')
-    plt.xlabel('Time (s)')
-    plt.ylabel('Horizontal Position (m)')
-    plt.title('Horizontal Position vs Time')
-    plt.grid(True)
-    plt.legend()
+        # Position plots
+        plt.subplot(2, 2, 3)
+        plt.plot(sol.t, v_horizontal * sol.t, label='Horizontal Position', color='green')
+        plt.xlabel('Time (s)')
+        plt.ylabel('Horizontal Position (m)')
+        plt.title('Horizontal Position vs Time')
+        plt.grid(True)
+        plt.legend()
 
-    plt.subplot(2, 2, 4)
-    plt.plot(sol.t, y_values, label='Vertical Position', color='red')
-    plt.xlabel('Time (s)')
-    plt.ylabel('Vertical Position (m)')
-    plt.title('Vertical Position vs Time')
-    plt.grid(True)
-    plt.legend()
+        plt.subplot(2, 2, 4)
+        plt.plot(sol.t, y_values, label='Vertical Position', color='red')
+        plt.xlabel('Time (s)')
+        plt.ylabel('Vertical Position (m)')
+        plt.title('Vertical Position vs Time')
 
-    plt.tight_layout()
-    plt.show()
+        # Add indicators for reaching 400,000 m and 7,672 m/s horizontal velocity
+        plt.axhline(y=400000, color='blue', linestyle='--', label='Altitude 400,000m')
+
+        plt.grid(True)
+        plt.legend()
+
+        plt.tight_layout()
+        plt.show()
+
+        # Ask the user if they want to continue or exit
+        choice = input("Do you want to input another set of parameters? (yes/no): ").lower()
+        if choice != 'yes':
+            break
 
 
 # Execute the main function
