@@ -30,11 +30,11 @@ def air_density_func(y):
 
 # Function to calculate thrust based on air density, velocity, and intake area
 def thrust_function(air_density, velocity, intake_area):
-    # Assuming methane is fuel being used with and energy density of 50 MJ/kg of fuel
+    # Assuming methane is fuel being used with and energy density of 50 MJ/kg of fuel only 70% is usable
     # For clarity know that methane requires 4 kg of oxygen for every kg of fuel and has an Isp of 300 seconds
-    # Theoretical max thrust/kg of fuel calculation in the form of (mass*energy density*Isp)/g
+    # Theoretical max thrust/kg of fuel calculation in the form of (mass flow rate*energy density*Isp)*g
     # You may replace this with an appropriate model for your application
-    return (((((0.2 * air_density * velocity * intake_area) / 4) * 50000000) * 300) / 9.81)
+    return (((((0.2 * air_density * velocity * intake_area) / 4) * ((50000000*.7) * 300) * 9.81)))
 
 
 # Function to calculate acceleration
