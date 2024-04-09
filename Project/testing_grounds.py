@@ -4,6 +4,7 @@ from scipy.integrate import solve_ivp
 
 # Constants
 g = 9.81  # Gravitational constant (m/s^2)
+k = 0.048  # Drag coefficient
 lift_coefficient = 0.8  # Lift coefficient
 
 data_table = {
@@ -15,111 +16,79 @@ data_table = {
 
 
 def air_density_func(y):
-    # Retrieve altitude and density data from the data table
     altitudes = data_table["Altitude (m)"]
     densities = data_table["Density (kg/m^3)"]
-    # Interpolate air density based on altitude
     return np.interp(y, altitudes, densities)
 
-
-
 # Function to calculate thrust based on air density, velocity, and intake area
+
 def thrust_function(air_density, velocity, intake_area):
-    # Assuming methane is fuel being used with and energy density of 50 MJ/kg of fuel only 70% is usable
-    # For clarity know that methane requires 4 kg of oxygen for every kg of fuel and has an Isp of 300 seconds
-    # Theoretical max thrust/kg of fuel calculation in the form of (mass flow rate*energy density*Isp)*g
-    # You may replace this with an appropriate model for your application
-    if ((((((0.2 * air_density * velocity * intake_area) / 4)) * ((50000000*.7) * 300) * 9.81))) < 400000:
-        return ((((((0.2 * air_density * velocity * intake_area) / 4)) * ((50000000*.7) * 300) * 9.81)))
-    else: return 400000
+    return ((((((0.2 * air_density * velocity * intake_area) / 4) + (0.2 * air_density * velocity * intake_area)) *
+              ((50000000 * 0.7) * 300) * 9.81)))
 
-
-# Function to calculate acceleration
 def acceleration_function(t, state, angle_of_attack, mass, lifting_area, intake_area):
-    v, y = state  # Unpack state
+    v_horizontal, v_vertical = state[:2]  # Unpack state
     theta_rad = np.radians(angle_of_attack)  # Convert angle to radians
 
-    # Calculate air density at current altitude
-    air_density = air_density_func(y)
+    air_density = air_density_func(state[2])  # Calculate air density at current altitude
 
-    # Calculate thrust based on air density, velocity, and intake area
-    T = thrust_function(air_density, v, intake_area)
+    T = thrust_function(air_density, np.sqrt(v_horizontal**2 + v_vertical**2), intake_area)  # Calculate thrust
 
-    # Constants
     drag_coefficient = 0.25
     cross_sectional_area = 249
 
-    # Calculate drag force magnitude
-    v_magnitude = np.abs(v)
-    drag_magnitude = 0.5 * drag_coefficient * air_density * cross_sectional_area * v_magnitude ** 2
+    v_magnitude = np.sqrt(v_horizontal**2 + v_vertical**2)  # Calculate velocity magnitude
+    drag_magnitude = 0.5 * drag_coefficient * air_density * cross_sectional_area * v_magnitude ** 2  # Drag force
+    lift_magnitude = lift_coefficient * air_density * lifting_area * v_magnitude ** 2 * np.sin(theta_rad)  # Lift force
 
-    # Calculate lift force magnitude
-    lift_magnitude = lift_coefficient * air_density * lifting_area * v_magnitude ** 2 * np.sin(theta_rad)
-
-    # Calculate drag force components
-    drag_horizontal = -np.sign(v) * drag_magnitude * np.cos(theta_rad)
-    drag_vertical = -np.sign(v) * drag_magnitude  * np.sin(theta_rad)
-
-    # Calculate lift force components
+    # Calculate forces components
+    drag_horizontal = -np.sign(v_horizontal) * drag_magnitude * np.cos(theta_rad)
+    drag_vertical = -np.sign(v_vertical) * drag_magnitude * np.sin(theta_rad)
     lift_vertical = lift_magnitude * np.cos(theta_rad)
-    lift_horizontal = lift_magnitude * -np.sin(theta_rad)
+    lift_horizontal = -lift_magnitude * np.sin(theta_rad)
 
     # Calculate thrust components
-    T_vertical = T * np.sin(theta_rad)
     T_horizontal = T * np.cos(theta_rad)
+    T_vertical = T * np.sin(theta_rad)
 
     # Calculate acceleration components
-    a_vertical = (-g + drag_vertical + lift_vertical + T_vertical) / mass
     a_horizontal = (drag_horizontal + lift_horizontal + T_horizontal) / mass
+    a_vertical = (-g + drag_vertical + lift_vertical + T_vertical) / mass
 
-    return [a_horizontal, a_vertical]  # Return [horizontal acceleration, vertical acceleration]
+    # Return derivatives of velocity in both directions
+    return [a_horizontal, a_vertical, v_horizontal, v_vertical]
 
-
-# Main function
 def main():
     while True:
         try:
-            # Prompt the user for input values
-            velocity_mag = float(input("Enter the velocity magnitude (m/s) for f104 use 100 m/s: "))
+            velocity_mag = float(input("Enter the velocity magnitude (m/s): "))
             angle_of_attack = float(input("Enter the angle of attack (degrees): "))
-            mass = float(input(
-                "Enter the mass of the craft (kg) ex: for Nasa's space shuttle (template used for drag calculation) use a mass of 70000 kg for mass when its carrying 2 tons of load: "))
-            lifting_area = float(input("Enter the lifting area (m^2) ex: f104 starfighter had a lifting area of 18.2 m^2 *should presumably be small since we are trying to get out of the atmosphere*: "))
-            intake_area = float(input("Enter the intake area (m^2) *realistically should be somewhere between 0.1-0.5 based on nasas xf43 experimental ramjet craft but is purely an estimate* : "))
+            mass = float(input("Enter the mass of the craft (kg): "))
+            lifting_area = float(input("Enter the lifting area (m^2): "))
+            intake_area = float(input("Enter the intake area (m^2): "))
         except ValueError:
             print("Invalid input. Please enter numeric values.")
             continue
 
-        # Calculate initial velocity components
         v_horizontal = velocity_mag * np.cos(np.radians(angle_of_attack))
         v_vertical = velocity_mag * np.sin(np.radians(angle_of_attack))
 
-        # Define initial vertical position
-        y_initial = 0.0  # Assume starting from sea level
+        state_initial = [v_horizontal, v_vertical, 0.0]
 
-        # Define initial state
-        state_initial = [v_horizontal, v_vertical]
-
-        # Time span for integration (0 to 100 seconds)
         t_span = [0, 10]
 
-        # Solve the ODE
-        sol = solve_ivp(lambda t, state: acceleration_function(t, state, angle_of_attack, mass, lifting_area, intake_area),
-                        t_span,
-                        state_initial,
-                        method='RK45',
-                        t_eval=np.linspace(t_span[0], t_span[1], 1000))
+        sol = solve_ivp(
+            lambda t, state: acceleration_function(t, state, angle_of_attack, mass, lifting_area, intake_area),
+            t_span,
+            state_initial,
+            method='RK45',
+            t_eval=np.linspace(t_span[0], t_span[1], 1000))
 
-        # Extract velocity and position from solution
-        v_values = sol.y[:2]
-
-        # Calculate acceleration values
+        v_values = sol.y[2:4]
         acceleration_values = np.array([acceleration_function(t, sol.y[:, i], angle_of_attack, mass, lifting_area, intake_area) for i, t in enumerate(sol.t)])
 
-        # Plot the velocity and position graphs
         plt.figure(figsize=(12, 8))
 
-        # Velocity plots
         plt.subplot(2, 2, 1)
         plt.plot(sol.t, v_values[0], label='Horizontal Velocity')
         plt.xlabel('Time (s)')
@@ -136,7 +105,6 @@ def main():
         plt.grid(True)
         plt.legend()
 
-        # Acceleration plots
         plt.subplot(2, 2, 3)
         plt.plot(sol.t, acceleration_values[:, 0], label='Horizontal Acceleration', color='blue')
         plt.xlabel('Time (s)')
