@@ -78,12 +78,12 @@ def main():
     while True:
         try:
             # Prompt the user for input values
-            velocity_mag = float(input("Enter the velocity magnitude (m/s) for f104 use 100 m/s: "))
+            velocity_mag = float(input("Enter the initial velocity magnitude (m/s) ex: 100 m/s would be the minimum to be within the edge of beleivability for Ramjet operation : "))
             angle_of_attack = float(input("Enter the angle of attack (degrees): "))
             mass = float(input(
                 "Enter the mass of the craft (kg) ex: for Nasa's space shuttle (template used for drag calculation) use a mass of 70000 kg for mass when its carrying 2 tons of load: "))
             lifting_area = float(input("Enter the lifting area (m^2) ex: f104 starfighter had a lifting area of 18.2 m^2 *should presumably be small since we are trying to get out of the atmosphere*: "))
-            intake_area = float(input("Enter the intake area (m^2) *realistically should be somewhere between 0.1-0.5 based on nasas xf43 experimental ramjet craft but is purely an estimate* : "))
+            intake_area = float(input("Enter the intake area (m^2) *realistically should be somewhere between 1-2.5 based on scaling nasas xf43 experimental ramjet craft to size of the space shuttle but is purely an estimate* : "))
         except ValueError:
             print("Invalid input. Please enter numeric values.")
             continue
@@ -106,7 +106,7 @@ def main():
                         t_span,
                         state_initial,
                         method='RK45',
-                        t_eval=np.linspace(t_span[0], t_span[1], 1000))
+                        t_eval=np.linspace(t_span[0], t_span[1], 100000))
 
         # Extract velocity and position from solution
         v_values = sol.y[:2]
