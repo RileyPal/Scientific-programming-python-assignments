@@ -24,16 +24,15 @@ def air_density_func(y):
 
 
 # Function to calculate thrust based on air density, velocity, and intake area
-def thrust_function(air_density, velocity, intake_area, energy_density, mass_flow_rate):
+def thrust_function(air_density, velocity, intake_area, energy_density, total_mass_flow_rate):
     # Convert energy density from MJ/kg to J/kg
-    energy_density = 50 # MJ in 1 kg of methane
     energy_density_joules_per_kg = energy_density * 1e6  # 1 MJ = 1e6 J
 
     # Calculate theoretical maximum thrust per unit mass of fuel (N/kg)
-    theoretical_max_thrust_per_kg = mass_flow_rate * energy_density_joules_per_kg * 300 * 9.81  # Isp = 300 seconds
+    theoretical_max_thrust_per_kg = total_mass_flow_rate * energy_density_joules_per_kg * 300 * 9.81  # Isp = 300 seconds
 
     # Calculate thrust based on intake area, air density, and velocity
-    thrust = (air_density * velocity * intake_area + (0.2 * air_density * velocity * intake_area * 15.625 / 19.625)) * (
+    thrust = (air_density * velocity * intake_area + (0.21 * air_density * velocity * intake_area * (15.625 / 19.625))) * (
                 theoretical_max_thrust_per_kg - velocity)
 
     return thrust
@@ -50,17 +49,18 @@ def acceleration_function(t, state, angle_of_attack, mass, lifting_area, intake_
     # Define energy density of methane and mass flow rate of methane (sample values)
     energy_density_of_methane = 55.5  # MJ/kg
     # Calculate the mass flow rate of oxygen based on air density and intake area
-    mass_flow_rate_of_oxygen = air_density * intake_area  # kg/s
+    mass_flow_rate_of_oxygen = 0.21 * air_density * intake_area * v  # for clarity, 21% of the air is oxygen thus .21*air density*intake area*velocity gives oxygen available in units of kg/s
 
     # Assuming stoichiometric combustion, determine the mass flow rate of methane
     # For each unit of oxygen, methane requires a certain amount according to the stoichiometry
     # Adjust the scaling factor according to the stoichiometry of the reaction
-    methane_to_oxygen_ratio = 1.5  # Example: Assuming 1 mole of methane requires 1.5 moles of oxygen
-    mass_flow_rate_of_methane = methane_to_oxygen_ratio * mass_flow_rate_of_oxygen  # Adjust this based on your stoichiometry
+    methane_to_oxygen_ratio = 0.25  # required for complete combustion
+    mass_flow_rate_of_methane = methane_to_oxygen_ratio * mass_flow_rate_of_oxygen
+    # Calculate total mass flow rate (fuel + air)
+    total_mass_flow_rate = air_density * intake_area * v + mass_flow_rate_of_methane
 
-    # Calculate thrust based on air density, velocity, intake area, and the mass flow rate of methane
-    T = thrust_function(air_density, v, intake_area, energy_density_of_methane, mass_flow_rate_of_methane)
-
+    # Calculate thrust based on air density, velocity, intake area, and the total mass flow rate
+    T = thrust_function(air_density, v, intake_area, energy_density_of_methane, total_mass_flow_rate)
     # Constants
     drag_coefficient = 0.25
     cross_sectional_area = 249
