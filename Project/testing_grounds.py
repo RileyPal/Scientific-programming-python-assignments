@@ -24,17 +24,21 @@ def air_density_func(y):
 
 
 # Function to calculate thrust based on air density, velocity, and intake area
-def thrust_function(air_density, velocity, intake_area, energy_density, total_mass_flow_rate):
-    # Convert energy density from MJ/kg to J/kg
+def thrust_function(air_density, velocity, intake_area):
+    # Define energy density of methane and mass flow rate of methane (sample values) may use in other thrust calculation approaches
+    energy_density = 42  # MJ/kg theoretical max for hydrocarbon fuels in air
     energy_density_joules_per_kg = energy_density * 1e6  # 1 MJ = 1e6 J
+    # Calculate the mass flow rate of oxygen based on air density and intake area
+    mass_flow_rate_of_oxygen = 0.21 * air_density * intake_area * velocity  # for clarity, 21% of the air is oxygen thus .21*air density*intake area*velocity gives oxygen available in units of kg/s
 
-    # Calculate theoretical maximum thrust per unit mass of fuel (N/kg)
-    theoretical_max_thrust_per_kg = total_mass_flow_rate * energy_density_joules_per_kg * 300 * 9.81  # Isp = 300 seconds
+    # Assuming stoichiometric combustion, determine the mass flow rate of methane
+    # For each unit of oxygen, methane requires a certain amount according to the stoichiometry
+    # Adjust the scaling factor according to the stoichiometry of the reaction
+    methane_to_oxygen_ratio = 0.25  # required for complete combustion
+    mass_flow_rate_of_fuel = methane_to_oxygen_ratio * mass_flow_rate_of_oxygen
 
     # Calculate thrust based on intake area, air density, and velocity
-    thrust = (air_density * velocity * intake_area + (
-                0.21 * air_density * velocity * intake_area * (15.625 / 19.625))) * (
-                     theoretical_max_thrust_per_kg - velocity)
+    thrust = ((mass_flow_rate_of_fuel * g)*300)
 
     return thrust
 
@@ -46,24 +50,13 @@ def acceleration_function(t, state, angle_of_attack, mass, lifting_area, intake_
 
     # Calculate air density at current altitude
     air_density = air_density_func(y)
-    # Define energy density of methane and mass flow rate of methane (sample values)
-    energy_density_of_methane = 55.5  # MJ/kg
-    # Calculate the mass flow rate of oxygen based on air density and intake area
-    mass_flow_rate_of_oxygen = 0.21 * air_density * intake_area * v  # for clarity, 21% of the air is oxygen thus .21*air density*intake area*velocity gives oxygen available in units of kg/s
 
-    # Assuming stoichiometric combustion, determine the mass flow rate of methane
-    # For each unit of oxygen, methane requires a certain amount according to the stoichiometry
-    # Adjust the scaling factor according to the stoichiometry of the reaction
-    methane_to_oxygen_ratio = 0.25  # required for complete combustion
-    mass_flow_rate_of_methane = methane_to_oxygen_ratio * mass_flow_rate_of_oxygen
-    # Calculate total mass flow rate (fuel + air)
-    total_mass_flow_rate = air_density * intake_area * v + mass_flow_rate_of_methane
 
-    # Calculate thrust based on air density, velocity, intake area, and the total mass flow rate
-    T = thrust_function(air_density, v, intake_area, energy_density_of_methane, total_mass_flow_rate)
+    # Calculate thrust
+    T = thrust_function(air_density, v, intake_area)
     # Constants
     drag_coefficient = 0.25
-    cross_sectional_area = 249
+    cross_sectional_area = 65 #cross sectional area of space shuttle from frontal aspect
 
     # Calculate drag force magnitude
     v_magnitude = np.abs(v)
@@ -102,9 +95,9 @@ def main():
                 "Enter the initial velocity magnitude (m/s) ex: 100 m/s would be the minimum to be within the edge of beleivability for Ramjet operation : "))
             angle_of_attack = float(input("Enter the angle of attack (degrees): "))
             mass = float(input(
-                "Enter the mass of the craft (kg) ex: for Nasa's space shuttle (template used for drag calculation) use a mass of 70000 kg for mass when its carrying 2 tons of load: "))
+                "Enter the mass of the craft (kg) ex: for Nasa's space shuttle  use a mass of 70000 kg for mass when its carrying 2 tons of load: "))
             lifting_area = float(input(
-                "Enter the lifting area (m^2) ex: f104 starfighter had a lifting area of 18.2 m^2 *should presumably be small since we are trying to get out of the atmosphere*: "))
+                "Enter the lifting area (m^2) ex: Lifting body designs have  18.2 m^2 *should presumably be almost equal to *: "))
             intake_area = float(input(
                 "Enter the intake area (m^2) *realistically should be somewhere between 1-2.5 based on scaling nasas xf43 experimental ramjet craft to size of the space shuttle but is purely an estimate* : "))
         except ValueError:
