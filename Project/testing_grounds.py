@@ -56,7 +56,7 @@ def acceleration_function(t, state, angle_of_attack, mass, lifting_area, intake_
     T = thrust_function(air_density, v, intake_area)
     # Constants
     drag_coefficient = 0.25
-    cross_sectional_area = 65 #cross sectional area of space shuttle from frontal aspect
+    cross_sectional_area = 0.5*np.pi * (4.5*lifting_area) **2  #cross sectional area will be roughly semi-circular with radius equal to 4.5 * lifting area
 
     # Calculate drag force magnitude
     v_magnitude = np.abs(v)
