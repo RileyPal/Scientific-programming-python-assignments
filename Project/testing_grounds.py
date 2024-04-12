@@ -38,7 +38,8 @@ def thrust_function(air_density, velocity, intake_area):
     mass_flow_rate_of_fuel = methane_to_oxygen_ratio * mass_flow_rate_of_oxygen
 
     # Calculate thrust based on intake area, air density, and velocity
-    thrust = ((mass_flow_rate_of_fuel * g)*300)
+    # P.S that 3200 figure, it's the Isp value for the exact type of engine I intend this program to try and simulate. It's a value I had to pull from a well researched Sim called Kerbal Space program(since numbers like that aren't publicly available for real world counter parts).
+    thrust = ((mass_flow_rate_of_fuel * g)*3200)
 
     return thrust
 
@@ -55,8 +56,8 @@ def acceleration_function(t, state, angle_of_attack, mass, lifting_area, intake_
     # Calculate thrust
     T = thrust_function(air_density, v, intake_area)
     # Constants
-    drag_coefficient = 0.25
-    cross_sectional_area = 0.5*np.pi * (4.5*lifting_area) **2  #cross sectional area will be roughly semi-circular with radius equal to 4.5 * lifting area
+    drag_coefficient = 0.025 # x-24B experimental lifting body was the basis for this value
+    cross_sectional_area = 0.5*np.pi * (lifting_area/4.5) **2  #cross sectional area will be roughly semi-circular with radius equal to 4.5 * lifting area
 
     # Calculate drag force magnitude
     v_magnitude = np.abs(v)
@@ -95,9 +96,9 @@ def main():
                 "Enter the initial velocity magnitude (m/s) ex: 100 m/s would be the minimum to be within the edge of beleivability for Ramjet operation : "))
             angle_of_attack = float(input("Enter the angle of attack (degrees): "))
             mass = float(input(
-                "Enter the mass of the craft (kg) ex: for Nasa's space shuttle  use a mass of 70000 kg for mass when its carrying 2 tons of load: "))
+                "Enter the mass of the craft (kg) ex: for Lifting body designed craft like this is presumably being used to simulate the a reasonable range is 6000-10000 kg but those were mostly unpowered reentry vehicles not SSTOs, so using values that low could result in extreme accelerations a lower intake area would be expected for that low mass of craft: "))
             lifting_area = float(input(
-                "Enter the lifting area (m^2) ex: Lifting body designs have  18.2 m^2 *should presumably be almost equal to *: "))
+                "Enter the lifting area (m^2) ex: Lifting body designs have like the x-24 which the drag calculations are based on had 31 m^2: "))
             intake_area = float(input(
                 "Enter the intake area (m^2) *realistically should be somewhere between 1-2.5 based on scaling nasas xf43 experimental ramjet craft to size of the space shuttle but is purely an estimate* : "))
         except ValueError:
@@ -115,7 +116,7 @@ def main():
         state_initial = [v_horizontal, v_vertical]
 
         # Time span for integration (0 to 100 seconds)
-        t_span = [0, 1]
+        t_span = [0, 10]
 
         # Solve the ODE
         sol = solve_ivp(
@@ -167,6 +168,23 @@ def main():
         plt.xlabel('Time (s)')
         plt.ylabel('Vertical Acceleration (m/s^2)')
         plt.title('Vertical Acceleration vs Time')
+        plt.grid(True)
+        plt.legend()
+
+        # Position plots
+        plt.subplot(3, 2, 5)
+        plt.plot(sol.t, sol.y[0], label='Horizontal Position', color='red')
+        plt.xlabel('Time (s)')
+        plt.ylabel('Horizontal Position (m)')
+        plt.title('Horizontal Position vs Time')
+        plt.grid(True)
+        plt.legend()
+
+        plt.subplot(3, 2, 6)
+        plt.plot(sol.t, sol.y[1], label='Vertical Position', color='orange')
+        plt.xlabel('Time (s)')
+        plt.ylabel('Vertical Position (m)')
+        plt.title('Vertical Position vs Time')
         plt.grid(True)
         plt.legend()
 
