@@ -1,12 +1,14 @@
 import numpy as np
 import matplotlib.pyplot as plt
 from scipy.integrate import solve_ivp
+from scipy.integrate import cumulative_trapezoid
 
 
 # Constants
 g = 9.81  # Gravitational constant (m/s^2)
 lift_coefficient = 0.8  # Lift coefficient
 
+# Air density data table pulled from Nasa's website
 data_table = {
     "Altitude (m)": [-1000, 0, 1000, 2000, 3000, 4000, 5000, 6000, 7000, 8000, 9000, 10000, 15000, 20000, 25000, 30000,
                      40000, 50000, 60000, 70000, 80000, 90000],
@@ -19,7 +21,7 @@ def air_density_func(y):
     # Retrieve altitude and density data from the data table
     altitudes = data_table["Altitude (m)"]
     densities = data_table["Density (kg/m^3)"]
-    # Interpolate air density based on altitude
+    # Interpolate air density based on altitude *need to test further as to whether or not this is implemented properly, since above 80000 m the thrust should be zero and we should begin decelerating in the vertical direction due to gravity*
     return np.interp(y, altitudes, densities)
 
 
@@ -57,16 +59,16 @@ def acceleration_function(t, state, angle_of_attack, mass, lifting_area, intake_
     T = thrust_function(air_density, v, intake_area)
     # Constants
     drag_coefficient = 0.025 # x-24B experimental lifting body was the basis for this value
-    cross_sectional_area = 0.5*np.pi * (lifting_area/4.5) **2  #cross sectional area will be roughly semi-circular with radius equal to 4.5 * lifting area
+    cross_sectional_area = 0.5*np.pi * (lifting_area/4.5) **2  #cross sectional area will be roughly semi-circular with radius equal to 1/4.5 * lifting area
 
     # Calculate drag force magnitude
     v_magnitude = np.abs(v)
     drag_magnitude = 0.5 * drag_coefficient * air_density * cross_sectional_area * v_magnitude ** 2
 
     # Calculate lift force magnitude
-    lift_magnitude = lift_coefficient * air_density * lifting_area * v_magnitude ** 2 * np.sin(theta_rad)
+    lift_magnitude = 0.5 * lift_coefficient * air_density * lifting_area * v_magnitude ** 2 * np.sin(theta_rad)
 
-    # Calculate drag force components
+    # Calculate drag force components *need to revise this in the future since the angle used for the drag should change with velocity components but right now just stays whatever the angle of attack was*
     drag_horizontal = -np.sign(v) * drag_magnitude * np.cos(theta_rad)
     drag_vertical = -np.sign(v) * drag_magnitude * np.sin(theta_rad)
 
@@ -100,7 +102,7 @@ def main():
             lifting_area = float(input(
                 "Enter the lifting area (m^2) ex: Lifting body designs have like the x-24 which the drag calculations are based on had 31 m^2: "))
             intake_area = float(input(
-                "Enter the intake area (m^2) *realistically should be somewhere between 1-2.5 based on scaling nasas xf43 experimental ramjet craft to size of the space shuttle but is purely an estimate* : "))
+                "Enter the intake area (m^2) *realistically should be somewhere between .1-1.5 based on scaling nasas xf43 experimental ramjet craft to size of the space shuttle but is purely an estimate* : "))
         except ValueError:
             print("Invalid input. Please enter numeric values.")
             continue
@@ -116,7 +118,7 @@ def main():
         state_initial = [v_horizontal, v_vertical]
 
         # Time span for integration (0 to 100 seconds)
-        t_span = [0, 10]
+        t_span = [0, 100]
 
         # Solve the ODE
         sol = solve_ivp(
@@ -134,11 +136,11 @@ def main():
             [acceleration_function(t, sol.y[:, i], angle_of_attack, mass, lifting_area, intake_area) for i, t in
              enumerate(sol.t)])
 
-        # Plot the velocity and position graphs
-        plt.figure(figsize=(12, 8))
+        # Plot the velocity, position, and acceleration graphs
+        plt.figure(figsize=(12, 12))
 
         # Velocity plots
-        plt.subplot(2, 2, 1)
+        plt.subplot(3, 2, 1)
         plt.plot(sol.t, v_values[0], label='Horizontal Velocity')
         plt.xlabel('Time (s)')
         plt.ylabel('Horizontal Velocity (m/s)')
@@ -146,7 +148,7 @@ def main():
         plt.grid(True)
         plt.legend()
 
-        plt.subplot(2, 2, 2)
+        plt.subplot(3, 2, 2)
         plt.plot(sol.t, v_values[1], label='Vertical Velocity')
         plt.xlabel('Time (s)')
         plt.ylabel('Vertical Velocity (m/s)')
@@ -155,7 +157,7 @@ def main():
         plt.legend()
 
         # Acceleration plots
-        plt.subplot(2, 2, 3)
+        plt.subplot(3, 2, 3)
         plt.plot(sol.t, acceleration_values[:, 0], label='Horizontal Acceleration', color='blue')
         plt.xlabel('Time (s)')
         plt.ylabel('Horizontal Acceleration (m/s^2)')
@@ -163,7 +165,7 @@ def main():
         plt.grid(True)
         plt.legend()
 
-        plt.subplot(2, 2, 4)
+        plt.subplot(3, 2, 4)
         plt.plot(sol.t, acceleration_values[:, 1], label='Vertical Acceleration', color='green')
         plt.xlabel('Time (s)')
         plt.ylabel('Vertical Acceleration (m/s^2)')
@@ -171,9 +173,13 @@ def main():
         plt.grid(True)
         plt.legend()
 
+        # Calculate positions by integrating velocities
+        horizontal_position = cumulative_trapezoid(v_values[0], sol.t)
+        vertical_position = cumulative_trapezoid(v_values[1], sol.t)
+
         # Position plots
         plt.subplot(3, 2, 5)
-        plt.plot(sol.t, sol.y[0], label='Horizontal Position', color='red')
+        plt.plot(sol.t, horizontal_position, label='Horizontal Position', color='red')
         plt.xlabel('Time (s)')
         plt.ylabel('Horizontal Position (m)')
         plt.title('Horizontal Position vs Time')
@@ -181,7 +187,7 @@ def main():
         plt.legend()
 
         plt.subplot(3, 2, 6)
-        plt.plot(sol.t, sol.y[1], label='Vertical Position', color='orange')
+        plt.plot(sol.t, vertical_position, label='Vertical Position', color='orange')
         plt.xlabel('Time (s)')
         plt.ylabel('Vertical Position (m)')
         plt.title('Vertical Position vs Time')
