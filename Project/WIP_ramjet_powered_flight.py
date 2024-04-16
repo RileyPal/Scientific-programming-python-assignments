@@ -66,7 +66,7 @@ def acceleration_function(t, state, angle_of_attack, mass, lifting_area, intake_
     drag_magnitude = 0.5 * drag_coefficient * air_density * cross_sectional_area * v_magnitude ** 2
 
     # Calculate lift force magnitude
-    lift_magnitude = 0.5 * lift_coefficient * air_density * lifting_area * v_magnitude ** 2 * np.sin(theta_rad)
+    lift_magnitude = 0.5 * lift_coefficient * air_density * lifting_area * v_magnitude ** 2
 
     # Calculate drag force components *need to revise this in the future since the angle used for the drag should change with velocity components but right now just stays whatever the angle of attack was*
     drag_horizontal = -np.sign(v) * drag_magnitude * np.cos(theta_rad)
@@ -81,7 +81,7 @@ def acceleration_function(t, state, angle_of_attack, mass, lifting_area, intake_
     T_horizontal = T * np.cos(theta_rad)
 
     # Calculate acceleration components
-    a_vertical = (-g + drag_vertical + lift_vertical + T_vertical) / mass
+    a_vertical = ( drag_vertical + lift_vertical + T_vertical - g ) / mass
     a_horizontal = (drag_horizontal + lift_horizontal + T_horizontal) / mass
 
     return [a_horizontal, a_vertical]  # Return [horizontal acceleration, vertical acceleration]
@@ -127,6 +127,8 @@ def main():
             state_initial,
             method='RK45',
             t_eval=np.linspace(t_span[0], t_span[1], 100000))
+
+
 
         # Extract velocity and position from solution
         v_values = sol.y[:2]
@@ -176,10 +178,11 @@ def main():
         # Calculate positions by integrating velocities
         horizontal_position = cumulative_trapezoid(v_values[0], sol.t)
         vertical_position = cumulative_trapezoid(v_values[1], sol.t)
+        time_adjusted = sol.t[:-1]
 
         # Position plots
         plt.subplot(3, 2, 5)
-        plt.plot(sol.t, horizontal_position, label='Horizontal Position', color='red')
+        plt.plot(time_adjusted, horizontal_position, label='Horizontal Position', color='red')
         plt.xlabel('Time (s)')
         plt.ylabel('Horizontal Position (m)')
         plt.title('Horizontal Position vs Time')
@@ -187,7 +190,7 @@ def main():
         plt.legend()
 
         plt.subplot(3, 2, 6)
-        plt.plot(sol.t, vertical_position, label='Vertical Position', color='orange')
+        plt.plot(time_adjusted, vertical_position, label='Vertical Position', color='orange')
         plt.xlabel('Time (s)')
         plt.ylabel('Vertical Position (m)')
         plt.title('Vertical Position vs Time')
