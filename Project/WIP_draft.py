@@ -3,7 +3,6 @@ import matplotlib.pyplot as plt
 from scipy.integrate import solve_ivp
 from scipy.integrate import cumulative_trapezoid
 
-
 # Constants
 g = 9.81  # Gravitational constant (m/s^2)
 lift_coefficient = 0.8  # Lift coefficient
@@ -16,14 +15,12 @@ data_table = {
                          0.1948, 0.08891, 0.04008, 0.01841, 0.003996, 0.001027, 0.0003097, 0.00008283, 0.00001846, 0.0]
 }
 
-
 def air_density_func(y):
     # Retrieve altitude and density data from the data table
     altitudes = data_table["Altitude (m)"]
     densities = data_table["Density (kg/m^3)"]
-    # Interpolate air density based on altitude *need to test further as to whether or not this is implemented properly, since above 80000 m the thrust should be zero and we should begin decelerating in the vertical direction due to gravity*
+    # Interpolate air density based on altitude
     return np.interp(y, altitudes, densities)
-
 
 # Function to calculate thrust based on air density, velocity, and intake area
 def thrust_function(air_density, velocity, intake_area):
@@ -32,77 +29,56 @@ def thrust_function(air_density, velocity, intake_area):
     energy_density_joules_per_kg = energy_density * 1e6  # 1 MJ = 1e6 J
     # Calculate the mass flow rate of oxygen based on air density and intake area
     mass_flow_rate_of_oxygen = 0.21 * air_density * intake_area * velocity  # for clarity, 21% of the air is oxygen thus .21*air density*intake area*velocity gives oxygen available in units of kg/s
-
     # Assuming stoichiometric combustion, determine the mass flow rate of methane
     # For each unit of oxygen, methane requires a certain amount according to the stoichiometry
     # Adjust the scaling factor according to the stoichiometry of the reaction
     methane_to_oxygen_ratio = 0.25  # required for complete combustion
     mass_flow_rate_of_fuel = methane_to_oxygen_ratio * mass_flow_rate_of_oxygen
-
     # Calculate thrust based on intake area, air density, and velocity
     # P.S that 3200 figure, it's the Isp value for the exact type of engine I intend this program to try and simulate. It's a value I had to pull from a well researched Sim called Kerbal Space program(since numbers like that aren't publicly available for real world counter parts).
     thrust = ((mass_flow_rate_of_fuel * g)*3200)
-
     return thrust
-
 
 # Function to calculate acceleration
 def acceleration_function(t, state, angle_of_attack, mass, lifting_area, intake_area):
     v, y = state  # Unpack state
     theta_rad = np.radians(angle_of_attack)  # Convert angle to radians
-
     # Calculate air density at current altitude
     air_density = air_density_func(y)
-
-
     # Calculate thrust
     T = thrust_function(air_density, v, intake_area)
     # Constants
     drag_coefficient = 0.025 # x-24B experimental lifting body was the basis for this value
     cross_sectional_area = 0.5*np.pi * (lifting_area/4.5) **2  #cross sectional area will be roughly semi-circular with radius equal to 1/4.5 * lifting area
-
     # Calculate drag force magnitude
-    v_magnitude = np.abs(v)
+    v_magnitude = v
     drag_magnitude = 0.5 * drag_coefficient * air_density * cross_sectional_area * v_magnitude ** 2
-
     # Calculate lift force magnitude
     lift_magnitude = 0.5 * lift_coefficient * air_density * lifting_area * v_magnitude ** 2
-
     # Calculate drag force components *need to revise this in the future since the angle used for the drag should change with velocity components but right now just stays whatever the angle of attack was*
     drag_horizontal = -np.sign(v) * drag_magnitude * np.cos(theta_rad)
     drag_vertical = -np.sign(v) * drag_magnitude * np.sin(theta_rad)
-
     # Calculate lift force components
     lift_vertical = lift_magnitude * np.cos(theta_rad)
     lift_horizontal = lift_magnitude * -np.sin(theta_rad)
-
     # Calculate thrust components
     T_vertical = T * np.sin(theta_rad)
     T_horizontal = T * np.cos(theta_rad)
-
     # Calculate acceleration components
-    a_vertical = ( drag_vertical + lift_vertical + T_vertical - g ) / mass
+    a_vertical = (-g + drag_vertical + lift_vertical + T_vertical) / mass
     a_horizontal = (drag_horizontal + lift_horizontal + T_horizontal) / mass
-
-    return [a_horizontal, a_vertical]  # Return [horizontal acceleration, vertical acceleration]
-
+    return [a_horizontal, a_vertical]  # Return [horizontal acceleration, vertical acceleration, horizontal thrust, vertical thrust]
 
 # Main function
 def main():
     while True:
         try:
-            print(
-                "Ultimately I want this program to output detailed simulations for the performance of an SSTO *with specifications set by the user* utilizing RAM/SCRAM engines. As of this current build I only have the infrastructure for the various calculations that need to run simultaneously and the output graphs currently serve as a way for me to check whether the calculations are doing what I want them to or not. Currently working on how I can automate finding optimal angling for any given point on calculated path to maximize net acceleration by the time the craft reaches the altitude that the engine will stop operating. After all the features are working properly I'll think about improving the resulting output visualizations to be easier to read and idealy allow you to read off individual values at each point on the graphs like desmos does.")
             # Prompt the user for input values
-            velocity_mag = float(input(
-                "Enter the initial velocity magnitude (m/s) ex: 100 m/s would be the minimum to be within the edge of beleivability for Ramjet operation : "))
+            velocity_mag = float(input("Enter the initial velocity magnitude (m/s) ex: 100 m/s would be the minimum to be within the edge of believability for Ramjet operation : "))
             angle_of_attack = float(input("Enter the angle of attack (degrees): "))
-            mass = float(input(
-                "Enter the mass of the craft (kg) ex: for Lifting body designed craft like this is presumably being used to simulate the a reasonable range is 6000-10000 kg but those were mostly unpowered reentry vehicles not SSTOs, so using values that low could result in extreme accelerations a lower intake area would be expected for that low mass of craft: "))
-            lifting_area = float(input(
-                "Enter the lifting area (m^2) ex: Lifting body designs have like the x-24 which the drag calculations are based on had 31 m^2: "))
-            intake_area = float(input(
-                "Enter the intake area (m^2) *realistically should be somewhere between .1-1.5 based on scaling nasas xf43 experimental ramjet craft to size of the space shuttle but is purely an estimate* : "))
+            mass = float(input("Enter the mass of the craft (kg): "))
+            lifting_area = float(input("Enter the lifting area (m^2) ex: Lifting body designs have like the x-24 which the drag calculations are based on had 31 m^2: "))
+            intake_area = float(input("Enter the intake area (m^2) *realistically should be somewhere between .1-1.5 based on scaling nasas xf43 experimental ramjet craft to size of the space shuttle but is purely an estimate* : "))
         except ValueError:
             print("Invalid input. Please enter numeric values.")
             continue
@@ -128,15 +104,19 @@ def main():
             method='RK45',
             t_eval=np.linspace(t_span[0], t_span[1], 100000))
 
-
-
         # Extract velocity and position from solution
         v_values = sol.y[:2]
 
         # Calculate acceleration values
         acceleration_values = np.array(
-            [acceleration_function(t, sol.y[:, i], angle_of_attack, mass, lifting_area, intake_area) for i, t in
-             enumerate(sol.t)])
+            [acceleration_function(t, sol.y[:, i], angle_of_attack, mass, lifting_area, intake_area) for i, t in enumerate(sol.t)])
+
+        # Calculate thrust magnitude
+        thrust_magnitudes = np.array([thrust_function(air_density_func(y), v, intake_area) for v, y in zip(v_values[1], sol.y[1])])
+
+        # Calculate positions by integrating velocities
+        horizontal_position = cumulative_trapezoid(v_values[0], sol.t)
+        time_adjusted = sol.t[:-1]
 
         # Plot the velocity, position, and acceleration graphs
         plt.figure(figsize=(12, 12))
@@ -175,11 +155,6 @@ def main():
         plt.grid(True)
         plt.legend()
 
-        # Calculate positions by integrating velocities
-        horizontal_position = cumulative_trapezoid(v_values[0], sol.t)
-        vertical_position = cumulative_trapezoid(v_values[1], sol.t)
-        time_adjusted = sol.t[:-1]
-
         # Position plots
         plt.subplot(3, 2, 5)
         plt.plot(time_adjusted, horizontal_position, label='Horizontal Position', color='red')
@@ -189,11 +164,25 @@ def main():
         plt.grid(True)
         plt.legend()
 
+        # Extract time and vertical position from solution
+        time_values = sol.t
+        vertical_position_values = sol.y[1]
+
+        # Plot the vertical position graph
         plt.subplot(3, 2, 6)
-        plt.plot(time_adjusted, vertical_position, label='Vertical Position', color='orange')
+        plt.plot(time_values, vertical_position_values, label='Vertical Position', color='orange')
         plt.xlabel('Time (s)')
         plt.ylabel('Vertical Position (m)')
         plt.title('Vertical Position vs Time')
+        plt.grid(True)
+        plt.legend()
+
+        # Thrust plot
+        plt.figure(figsize=(6, 6))
+        plt.plot(sol.t, thrust_magnitudes, label='Thrust Magnitude', color='purple')
+        plt.xlabel('Time (s)')
+        plt.ylabel('Thrust Magnitude (N)')
+        plt.title('Thrust Magnitude vs Time')
         plt.grid(True)
         plt.legend()
 
