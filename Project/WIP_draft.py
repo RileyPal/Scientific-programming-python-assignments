@@ -66,7 +66,7 @@ def acceleration_function(t, state, angle_of_attack, mass, lifting_area, intake_
     drag_magnitude = 0.5 * drag_coefficient * air_density * cross_sectional_area * v_magnitude ** 2
 
     # Calculate lift force magnitude
-    lift_magnitude = 0.5 * lift_coefficient * air_density * lifting_area * v_magnitude ** 2 * np.sin(theta_rad)
+    lift_magnitude = 0.5 * lift_coefficient * air_density * lifting_area * v_magnitude ** 2
 
     # Calculate drag force components *need to revise this in the future since the angle used for the drag should change with velocity components but right now just stays whatever the angle of attack was*
     drag_horizontal = -np.sign(v) * drag_magnitude * np.cos(theta_rad)
@@ -81,7 +81,7 @@ def acceleration_function(t, state, angle_of_attack, mass, lifting_area, intake_
     T_horizontal = T * np.cos(theta_rad)
 
     # Calculate acceleration components
-    a_vertical = (-g + drag_vertical + lift_vertical + T_vertical) / mass
+    a_vertical = ( drag_vertical + lift_vertical + T_vertical - g ) / mass
     a_horizontal = (drag_horizontal + lift_horizontal + T_horizontal) / mass
 
     return [a_horizontal, a_vertical]  # Return [horizontal acceleration, vertical acceleration]
@@ -128,9 +128,7 @@ def main():
             method='RK45',
             t_eval=np.linspace(t_span[0], t_span[1], 100000))
 
-        altitude_mask = sol.y[1] <= 80000
-        sol.t = sol.t[altitude_mask]
-        sol.y = sol.y[:, altitude_mask]
+
 
         # Extract velocity and position from solution
         v_values = sol.y[:2]
