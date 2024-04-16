@@ -176,10 +176,11 @@ def main():
         # Calculate positions by integrating velocities
         horizontal_position = cumulative_trapezoid(v_values[0], sol.t)
         vertical_position = cumulative_trapezoid(v_values[1], sol.t)
+        time_adjusted = sol.t[:-1]
 
         # Position plots
         plt.subplot(3, 2, 5)
-        plt.plot(sol.t, horizontal_position, label='Horizontal Position', color='red')
+        plt.plot(time_adjusted, horizontal_position, label='Horizontal Position', color='red')
         plt.xlabel('Time (s)')
         plt.ylabel('Horizontal Position (m)')
         plt.title('Horizontal Position vs Time')
@@ -187,7 +188,7 @@ def main():
         plt.legend()
 
         plt.subplot(3, 2, 6)
-        plt.plot(sol.t, vertical_position, label='Vertical Position', color='orange')
+        plt.plot(time_adjusted, vertical_position, label='Vertical Position', color='orange')
         plt.xlabel('Time (s)')
         plt.ylabel('Vertical Position (m)')
         plt.title('Vertical Position vs Time')
