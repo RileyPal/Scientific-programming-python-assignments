@@ -128,6 +128,10 @@ def main():
             method='RK45',
             t_eval=np.linspace(t_span[0], t_span[1], 100000))
 
+        altitude_mask = sol.y[1] <= 80000
+        sol.t = sol.t[altitude_mask]
+        sol.y = sol.y[:, altitude_mask]
+
         # Extract velocity and position from solution
         v_values = sol.y[:2]
 

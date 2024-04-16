@@ -5,10 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="78b3dbee-a923-497c-ad01-204df1a1427a" name="Changes" comment="progress on functions and branching">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Project/WIP_draft.py" beforeDir="false" afterPath="$PROJECT_DIR$/Project/WIP_draft.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Project/WIP_ramjet_powered_flight.py" beforeDir="false" afterPath="$PROJECT_DIR$/Project/WIP_ramjet_powered_flight.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -384,7 +381,15 @@
       <option name="project" value="LOCAL" />
       <updated>1712867288573</updated>
     </task>
-    <option name="localTasksCounter" value="28" />
+    <task id="LOCAL-00028" summary="progress on functions and branching">
+      <option name="closed" value="true" />
+      <created>1713294043900</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1713294043900</updated>
+    </task>
+    <option name="localTasksCounter" value="29" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
