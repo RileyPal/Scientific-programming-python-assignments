@@ -5,7 +5,7 @@ from scipy.integrate import cumulative_trapezoid
 
 # Constants
 g = 9.81  # Gravitational constant (m/s^2)
-lift_coefficient = 0.8  # Lift coefficient
+lift_coefficient = 0.5  # Lift coefficient *can't seem to find a good source to base this on for lifting body craft so this is bordering on being made up, simply a guess based on range of realworld values that exist.*
 
 # Air density data table pulled from Nasa's website
 data_table = {
@@ -49,7 +49,7 @@ def acceleration_function(t, state, angle_of_attack, mass, lifting_area, intake_
     T = thrust_function(air_density, v, intake_area)
     # Constants
     drag_coefficient = 0.025 # x-24B experimental lifting body was the basis for this value
-    cross_sectional_area = 0.5*np.pi * (lifting_area/4.5) **2  #cross sectional area will be roughly semi-circular with radius equal to 1/4.5 * lifting area
+    cross_sectional_area = 0.5*np.pi * (lifting_area/4.5) **2  # front cross sectional area will be roughly semi-circular with radius equal to 1/4.5 * lifting area
     # Calculate drag force magnitude
     v_magnitude = v
     drag_magnitude = 0.5 * drag_coefficient * air_density * cross_sectional_area * v_magnitude ** 2
