@@ -5,12 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="78b3dbee-a923-497c-ad01-204df1a1427a" name="Changes" comment="progress on functions and branching">
-      <change afterPath="$PROJECT_DIR$/Project/test_conditions_vs_altitude.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Project/WIP_draft.py" beforeDir="false" afterPath="$PROJECT_DIR$/Project/WIP_draft.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Project/WIP_ramjet_powered_flight.py" beforeDir="false" afterPath="$PROJECT_DIR$/Project/WIP_ramjet_powered_flight.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Project/conditions_vs_altitude.py" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -386,7 +381,15 @@
       <option name="project" value="LOCAL" />
       <updated>1712774593137</updated>
     </task>
-    <option name="localTasksCounter" value="28" />
+    <task id="LOCAL-00028" summary="progress on functions and branching">
+      <option name="closed" value="true" />
+      <created>1713311268526</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1713311268526</updated>
+    </task>
+    <option name="localTasksCounter" value="29" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -455,7 +458,7 @@
     <SUITE FILE_PATH="coverage/Scientific_programming_python_assignments$two_balls_bounce.coverage" NAME="two_balls_bounce Coverage Results" MODIFIED="1712769287711" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Vpython02" />
     <SUITE FILE_PATH="coverage/experiment$add_two_numbers.coverage" NAME="add_two_numbers Coverage Results" MODIFIED="1707929509751" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/Scientific_programming_python_assignments$Main.coverage" NAME="Main Coverage Results" MODIFIED="1711571726493" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Project" />
-    <SUITE FILE_PATH="coverage/Scientific_programming_python_assignments$WIP_ramjet_powered_flight.coverage" NAME="WIP_ramjet_powered_flight Coverage Results" MODIFIED="1713310304913" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Project" />
+    <SUITE FILE_PATH="coverage/Scientific_programming_python_assignments$WIP_ramjet_powered_flight.coverage" NAME="WIP_ramjet_powered_flight Coverage Results" MODIFIED="1713310967297" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Project" />
     <SUITE FILE_PATH="coverage/Scientific_programming_python_assignments$constant_powered_flight.coverage" NAME="constant_powered_flight Coverage Results" MODIFIED="1712775549789" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Project" />
     <SUITE FILE_PATH="coverage/Scientific_programming_python_assignments$birthday_vector.coverage" NAME="birthday_vector Coverage Results" MODIFIED="1712248850246" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/VPython00_and01" />
     <SUITE FILE_PATH="coverage/experiment$calculate_interest_growth.coverage" NAME="calculate_interest_growth Coverage Results" MODIFIED="1709670777564" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$APPLICATION_CONFIG_DIR$/scratches" />
