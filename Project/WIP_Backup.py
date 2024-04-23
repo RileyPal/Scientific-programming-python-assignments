@@ -71,7 +71,7 @@ def acceleration_function(t, state, angle_of_attack, mass, lifting_area, intake_
     # Calculate acceleration components
     a_vertical = -g + ( + drag_vertical + lift_vertical + T_vertical) / mass
     a_horizontal = (drag_horizontal + lift_horizontal + T_horizontal) / mass
-    return [a_horizontal, a_vertical]  # Return [horizontal acceleration, vertical acceleration, horizontal thrust, vertical thrust]
+    return [a_horizontal, a_vertical]  # Return [horizontal acceleration, vertical acceleration]
 
 
 # Main function
@@ -107,7 +107,7 @@ def main():
             lambda t, state: acceleration_function(t, state, angle_of_attack, mass, lifting_area, intake_area),
             t_span,
             state_initial,
-            method='RK45',
+            method='RK23',
             t_eval=np.linspace(t_span[0], t_span[1], 100000))
 
         # Extract velocity and position from solution
