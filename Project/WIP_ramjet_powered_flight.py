@@ -133,8 +133,8 @@ def main():
         thrust_magnitudes = np.array(
             [thrust_function(air_density_func(y), v, intake_area) for v, y in zip(v_values[1], sol.y[1])])
         # Calculate positions by integrating velocities
-        horizontal_position = cumulative_trapezoid(v_values[1], sol.t)
-        vertical_position_values = cumulative_trapezoid(v_values[0], sol.t)
+        horizontal_position = cumulative_trapezoid(v_values[0], sol.t)
+        vertical_position_values = cumulative_trapezoid(v_values[1], sol.t)
         time_adjusted = sol.t[:-1]
 
         # Plot the velocity, position, and acceleration graphs
@@ -142,7 +142,7 @@ def main():
 
         # Velocity plots
         plt.subplot(3, 2, 1)
-        plt.plot(sol.t, v_values[1], label='Horizontal Velocity')
+        plt.plot(sol.t, v_values[0], label='Horizontal Velocity')
         plt.xlabel('Time (s)')
         plt.ylabel('Horizontal Velocity (m/s)')
         plt.title('Horizontal Velocity vs Time')
@@ -150,7 +150,7 @@ def main():
         plt.legend()
 
         plt.subplot(3, 2, 2)
-        plt.plot(sol.t, v_values[0], label='Vertical Velocity')
+        plt.plot(sol.t, v_values[1], label='Vertical Velocity')
         plt.xlabel('Time (s)')
         plt.ylabel('Vertical Velocity (m/s)')
         plt.title('Vertical Velocity vs Time')
@@ -159,7 +159,7 @@ def main():
 
         # Acceleration plots
         plt.subplot(3, 2, 3)
-        plt.plot(sol.t, acceleration_values[:, 1], label='Horizontal Acceleration', color='blue')
+        plt.plot(sol.t, acceleration_values[:, 0], label='Horizontal Acceleration', color='blue')
         plt.xlabel('Time (s)')
         plt.ylabel('Horizontal Acceleration (m/s^2)')
         plt.title('Horizontal Acceleration vs Time')
@@ -167,7 +167,7 @@ def main():
         plt.legend()
 
         plt.subplot(3, 2, 4)
-        plt.plot(sol.t, acceleration_values[:, 0], label='Vertical Acceleration', color='green')
+        plt.plot(sol.t, acceleration_values[:, 1], label='Vertical Acceleration', color='green')
         plt.xlabel('Time (s)')
         plt.ylabel('Vertical Acceleration (m/s^2)')
         plt.title('Vertical Acceleration vs Time')
