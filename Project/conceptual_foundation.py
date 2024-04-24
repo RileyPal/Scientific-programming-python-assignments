@@ -126,6 +126,3 @@ def position_function_from_acceleration(t, a_horizontal, a_vertical, v0_horizont
     x = 0.5 * a_horizontal * t ** 2 + v0_horizontal * t + x0
     y = 0.5 * a_vertical * t ** 2 + v0_vertical * t + y0
     return [x, y]
-
-print(position_function_from_velocity(t, x_prime, y_prime))
-print(position_function_from_acceleration(t, a_horizontal, a_vertical, v0_horizontal, v0_vertical))
