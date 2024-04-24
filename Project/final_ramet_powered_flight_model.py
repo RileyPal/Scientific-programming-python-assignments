@@ -15,10 +15,11 @@ data_table = {
                          0.1948, 0.08891, 0.04008, 0.01841, 0.003996, 0.001027, 0.0003097, 0.00008283, 0.00001846, 0.0]
 }
 
+
 # Main function
 def main():
     # Get initial conditions
-    v0_horizontal, v0_vertical, mass, lifting_area, intake_area = get_initial_conditions()
+    v0_horizontal, v0_vertical, x, y, mass, lifting_area, intake_area = get_initial_conditions()
 
     # Time parameters
     dt = 0.01  # Time step size
@@ -36,7 +37,7 @@ def main():
     # Evolve the system forward in time
     for i, t in enumerate(time_values):
         # Calculate acceleration
-        a_horizontal, a_vertical = acceleration_function(t, state, mass, lifting_area, intake_area, y)
+        a_horizontal, a_vertical = acceleration_function(t, state, y,  mass, lifting_area, intake_area)
 
         # Store acceleration
         acceleration_values[i] = [a_horizontal, a_vertical]
@@ -68,7 +69,7 @@ def get_initial_conditions():
             "Enter the lifting area (m^2) ex: Lifting body designs have like the x-24 which the drag calculations "
             "are based on had 31 m^2: "))
         intake_area = float(input(
-            "Enter the intake area (m^2) *realistically should be somewhere between .1-1.5 based on scaling nasas "
+            "Enter the intake area (m^2) *realistically should be somewhere between .1-1.5 based on scaling nasa's "
             "xf43 experimental ramjet craft to size of the space shuttle but is purely an estimate* : "))
     except ValueError:
         print("Invalid input. Please enter numeric values.")
@@ -76,8 +77,10 @@ def get_initial_conditions():
 
     v0_horizontal = velocity_mag * np.cos(np.radians(angle_of_attack))
     v0_vertical = velocity_mag * np.sin(np.radians(angle_of_attack))
+    x = 0.0
+    y = 0.0
 
-    return v0_horizontal, v0_vertical, mass, lifting_area, intake_area
+    return v0_horizontal, v0_vertical, x, y, mass, lifting_area, intake_area
 
 
 # Function to calculate air density
@@ -103,7 +106,7 @@ def lift_function(air_density, v_horizontal, lifting_area):
 
 
 # Function to calculate acceleration
-def acceleration_function(t, state, mass, lifting_area, intake_area, y):
+def acceleration_function(t, state, y, mass, lifting_area, intake_area):
     v_horizontal, v_vertical = state
     air_density = air_density_func(y)
 
@@ -132,6 +135,11 @@ def acceleration_function(t, state, mass, lifting_area, intake_area, y):
 
 # Function to plot results
 def plot_results(time_values, acceleration_values, velocity_values, position_values):
+    print("start and end values:")
+    print("t:", time_values)
+    print("accel:", acceleration_values)
+    print("vel:", velocity_values)
+    print("x,y:", position_values)
     plt.figure(figsize=(12, 8))
 
     plt.subplot(3, 1, 1)
