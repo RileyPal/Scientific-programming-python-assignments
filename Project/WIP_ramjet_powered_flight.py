@@ -54,7 +54,7 @@ def acceleration_function(t, state, angle_of_attack, mass, lifting_area, intake_
     # Constants
     drag_coefficient = 0.025  # x-24B experimental lifting body was the basis for this value
     cross_sectional_area = 0.5 * np.pi * (
-                lifting_area / 4.5) ** 2  # front cross sectional area will be roughly semi-circular with radius
+            lifting_area / 4.5) ** 2  # front cross sectional area will be roughly semi-circular with radius
     # equal to 1/4.5 * lifting area
     # Adjust the mass
     mass -= mass_flow_rate_of_fuel
@@ -213,3 +213,6 @@ def main():
 # Execute the main function
 if __name__ == "__main__":
     main()
+
+# Currently don't trust the result im getting at all. I suspect the way the components are being handled by the ivp is
+# just wrong.
