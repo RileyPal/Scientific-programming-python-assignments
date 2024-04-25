@@ -30,6 +30,7 @@ def main():
     acceleration_values = np.zeros((len(time_values), 2))
     velocity_values = np.zeros((len(time_values), 2))
     position_values = np.zeros((len(time_values), 2))
+    thrust_values = np.zeros((len(time_values), 1))
 
     # Initial state
     state = [v0_horizontal, v0_vertical]
@@ -37,10 +38,12 @@ def main():
     # Evolve the system forward in time
     for i, t in enumerate(time_values):
         # Calculate acceleration
-        a_horizontal, a_vertical = acceleration_function(t, state, y,  mass, lifting_area, intake_area)
+        a_horizontal, a_vertical, T = acceleration_function(state, y,  mass, lifting_area, intake_area)
 
         # Store acceleration
         acceleration_values[i] = [a_horizontal, a_vertical]
+        # Store thrust
+        thrust_values[i] = [T]
 
         # Update velocity
         state[0] += a_horizontal * dt
@@ -54,7 +57,7 @@ def main():
         position_values[i] = [x, y]
 
     # Plot results
-    plot_results(time_values, acceleration_values, velocity_values, position_values)
+    plot_results(time_values, acceleration_values, velocity_values, position_values, thrust_values)
 
 
 # Function to get initial conditions
@@ -106,7 +109,7 @@ def lift_function(air_density, v_horizontal, lifting_area):
 
 
 # Function to calculate acceleration
-def acceleration_function(t, state, y, mass, lifting_area, intake_area):
+def acceleration_function(state, y, mass, lifting_area, intake_area):
     v_horizontal, v_vertical = state
     air_density = air_density_func(y)
 
@@ -124,17 +127,17 @@ def acceleration_function(t, state, y, mass, lifting_area, intake_area):
     # Calculate gravitational force
     gravity_force = mass * g
 
-    # Calculate horizontal acceleration
+    # Calculate horizontal acceleration ignoring lift's affect in the horizontal
     a_horizontal = (T - drag_horizontal) / mass
 
     # Calculate vertical acceleration
     a_vertical = (lift - gravity_force - drag_vertical) / mass
 
-    return a_horizontal, a_vertical
+    return a_horizontal, a_vertical, T
 
 
 # Function to plot results
-def plot_results(time_values, acceleration_values, velocity_values, position_values):
+def plot_results(time_values, acceleration_values, velocity_values, position_values, thrust_values):
     print("start and end values:")
     print("t:", time_values)
     print("accel:", acceleration_values)
@@ -166,6 +169,14 @@ def plot_results(time_values, acceleration_values, velocity_values, position_val
     plt.xlabel('Time (s)')
     plt.ylabel('Position (m)')
     plt.title('Position vs Time')
+    plt.legend()
+    plt.grid()
+
+    plt.figure(figsize=(12, 8))
+    plt.plot(time_values, thrust_values[:, 0], label='Thrust')
+    plt.xlabel('Time (s)')
+    plt.ylabel('Newtons (N)')
+    plt.title('Thrust vs Time')
     plt.legend()
     plt.grid()
 
