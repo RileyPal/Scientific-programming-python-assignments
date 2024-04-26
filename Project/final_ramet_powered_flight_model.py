@@ -7,7 +7,7 @@
 # when you consider the fact that atmospheric drag makes it so the longer a rocket stays in the atmosphere less and less
 # payload could be put in orbit, meaning we opted for faster ascent stages to minimize time spent in the atmosphere. The
 # problem there is drag scales quadratically with velocity meaning we get diminishing returns, so why not take advantage
-# of the atmosphere, with airbreathing engines like RAM and SCRAM jet engines we essentially turn that square term of
+# of the atmosphere, with air breathing engines like RAM and SCRAM jet engines we essentially turn that square term of
 # drag into something closer to a power of 1.5 or maybe even lower since these engines allow us to get increasing
 # output for every bit faster we go in the atmosphere.
 #
@@ -22,8 +22,12 @@ import matplotlib.pyplot as plt
 # Constants
 g = 9.81  # Gravitational constant (m/s^2)
 lift_coefficient = 0.2  # Lift coefficient: what research I could find suggests max for this type of aircraft is .4
-x0 = 0.0
-y0 = 0.0
+x0 = 0.0  # Start positions set to zero meters
+y0 = 0.0  #
+
+# Time parameters
+dt = 0.01  # Time step size
+t_max = 100  # Maximum time
 
 # Air density data table
 data_table = {
@@ -36,12 +40,9 @@ data_table = {
 
 # Main function
 def main():
+
     # Get initial conditions
     v0_horizontal, v0_vertical, x, y, mass0, lifting_area, intake_area = get_initial_conditions()
-
-    # Time parameters
-    dt = 0.01  # Time step size
-    t_max = 100  # Maximum time
 
     # Initialize arrays to store results
     time_values = np.arange(0, t_max, dt)
@@ -52,8 +53,8 @@ def main():
     thrust_values = np.zeros((len(time_values), 1))
 
     # Initial state
-    state = [v0_horizontal, v0_vertical]
-    mass = mass0
+    state = [v0_horizontal, v0_vertical]  # velocities in m/s
+    mass = mass0  # mass in Kg
     # Evolve the system forward in time
     for i, t in enumerate(time_values):
         # Calculate acceleration and fuel consumption
@@ -103,10 +104,10 @@ def get_initial_conditions():
         print("Invalid input. Please enter numeric values.")
         return get_initial_conditions()
 
-    v0_horizontal = velocity_mag * np.cos(np.radians(angle_of_attack))
-    v0_vertical = velocity_mag * np.sin(np.radians(angle_of_attack))
-    x = 0.0
-    y = 0.0
+    v0_horizontal = velocity_mag * np.cos(np.radians(angle_of_attack))  # meters per second (m/s)
+    v0_vertical = velocity_mag * np.sin(np.radians(angle_of_attack))  # meters per second (m/s)
+    x = 0.0  # meters (m)
+    y = 0.0  # meters above sea level (m)
 
     return v0_horizontal, v0_vertical, x, y, mass0, lifting_area, intake_area
 
@@ -125,16 +126,16 @@ def thrust_function(air_density, velocity, intake_area):  # This could be modifi
     # onboard oxidizer burning required of an SSTO.
     mass_flow_rate_of_oxygen = 0.21 * air_density * intake_area * velocity
     methane_to_oxygen_ratio = 0.25
-    mass_flow_rate_of_fuel = methane_to_oxygen_ratio * mass_flow_rate_of_oxygen
+    mass_flow_rate_of_fuel = methane_to_oxygen_ratio * mass_flow_rate_of_oxygen  # fuel consumed per second (Kg/s)
     T = (mass_flow_rate_of_fuel * g) * 3200
-    delta_mass = mass_flow_rate_of_oxygen * 0.01
+    delta_mass = mass_flow_rate_of_oxygen * dt  # fuel consumed per time step in Kg/.01s
     return T, mass_flow_rate_of_fuel, delta_mass
 
 
 # Function to calculate lift
 def lift_function(air_density, v_horizontal, lifting_area):
     lift = 0.5 * lift_coefficient * air_density * lifting_area * v_horizontal ** 2
-    return lift
+    return lift  # lift in Newtons (N)
 
 
 # Function to calculate acceleration
@@ -180,7 +181,6 @@ def plot_results(time_values, acceleration_values, velocity_values, position_val
     plt.xlabel('Time (s)')
     plt.ylabel('Acceleration (m/s^2)')
     plt.title('Vertical Acceleration vs Time')
-    plt.legend()
     plt.grid()
 
     plt.subplot(4, 2, 2)
@@ -188,7 +188,6 @@ def plot_results(time_values, acceleration_values, velocity_values, position_val
     plt.xlabel('Time (s)')
     plt.ylabel('Acceleration (m/s^2)')
     plt.title('Horizontal Acceleration vs Time')
-    plt.legend()
     plt.grid()
 
     plt.subplot(4, 2, 3)
@@ -196,7 +195,6 @@ def plot_results(time_values, acceleration_values, velocity_values, position_val
     plt.xlabel('Time (s)')
     plt.ylabel('Velocity (m/s)')
     plt.title('Vertical Velocity vs Time')
-    plt.legend()
     plt.grid()
 
     plt.subplot(4, 2, 4)
@@ -204,7 +202,6 @@ def plot_results(time_values, acceleration_values, velocity_values, position_val
     plt.xlabel('Time (s)')
     plt.ylabel('Velocity (m/s)')
     plt.title('Horizontal Velocity vs Time')
-    plt.legend()
     plt.grid()
 
     plt.subplot(4, 2, 5)
@@ -212,7 +209,6 @@ def plot_results(time_values, acceleration_values, velocity_values, position_val
     plt.xlabel('Time (s)')
     plt.ylabel('Position (m)')
     plt.title('Vertical Position vs Time')
-    plt.legend()
     plt.grid()
 
     plt.subplot(4, 2, 6)
@@ -220,7 +216,6 @@ def plot_results(time_values, acceleration_values, velocity_values, position_val
     plt.xlabel('Time (s)')
     plt.ylabel('Position (m)')
     plt.title('Horizontal Position vs Time')
-    plt.legend()
     plt.grid()
 
     plt.subplot(4, 2, 7)
@@ -228,7 +223,6 @@ def plot_results(time_values, acceleration_values, velocity_values, position_val
     plt.xlabel('Time (s)')
     plt.ylabel('Newtons (N)')
     plt.title('Thrust vs Time')
-    plt.legend()
     plt.grid()
 
     plt.subplot(4, 2, 8)
@@ -236,7 +230,6 @@ def plot_results(time_values, acceleration_values, velocity_values, position_val
     plt.xlabel('Time (s)')
     plt.ylabel('Mass (Kg/s)')
     plt.title('Fuel consumption vs Time')
-    plt.legend()
     plt.grid()
 
     plt.tight_layout()
