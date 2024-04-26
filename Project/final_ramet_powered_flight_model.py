@@ -19,7 +19,7 @@ data_table = {
 # Main function
 def main():
     # Get initial conditions
-    v0_horizontal, v0_vertical, x, y, mass, lifting_area, intake_area = get_initial_conditions()
+    v0_horizontal, v0_vertical, x, y, mass0, lifting_area, intake_area = get_initial_conditions()
 
     # Time parameters
     dt = 0.01  # Time step size
@@ -27,6 +27,7 @@ def main():
 
     # Initialize arrays to store results
     time_values = np.arange(0, t_max, dt)
+    delta_mass_values = np.zeros((len(time_values), 1))
     acceleration_values = np.zeros((len(time_values), 2))
     velocity_values = np.zeros((len(time_values), 2))
     position_values = np.zeros((len(time_values), 2))
@@ -34,16 +35,19 @@ def main():
 
     # Initial state
     state = [v0_horizontal, v0_vertical]
-
+    mass = mass0
     # Evolve the system forward in time
     for i, t in enumerate(time_values):
-        # Calculate acceleration
-        a_horizontal, a_vertical, T = acceleration_function(state, y,  mass, lifting_area, intake_area)
+        # Calculate acceleration and fuel consumption
+        a_horizontal, a_vertical, T, mass_flow_rate_of_fuel, delta_mass = acceleration_function(state, y, mass,
+                                                                                                lifting_area,
+                                                                                                intake_area)
 
         # Store acceleration
         acceleration_values[i] = [a_horizontal, a_vertical]
-        # Store thrust
+        # Store thrust and mass
         thrust_values[i] = [T]
+        delta_mass_values[i] = [delta_mass * dt]
 
         # Update velocity
         state[0] += a_horizontal * dt
@@ -52,18 +56,21 @@ def main():
         # Store velocity
         velocity_values[i] = state
 
-        # Update position
+        # Update position and mass
         x, y = position_values[i - 1] + velocity_values[i] * dt
         position_values[i] = [x, y]
+        mass -= mass_flow_rate_of_fuel * dt
+        delta_mass_values[i] = delta_mass
 
     # Plot results
-    plot_results(time_values, acceleration_values, velocity_values, position_values, thrust_values, mass)
+    plot_results(time_values, acceleration_values, velocity_values, position_values, thrust_values, delta_mass_values,
+                 mass0)
 
 
 # Function to get initial conditions
 def get_initial_conditions():
     try:
-        mass = float(input("Enter the initial mass of the craft (kg): "))
+        mass0 = float(input("Enter the initial mass of the craft (kg): "))
         velocity_mag = float(input(
             "Enter the initial velocity magnitude (m/s) ex: 100 m/s would be the minimum to be within the edge of "
             "believability for Ramjet operation : "))
@@ -83,7 +90,7 @@ def get_initial_conditions():
     x = 0.0
     y = 0.0
 
-    return v0_horizontal, v0_vertical, x, y, mass, lifting_area, intake_area
+    return v0_horizontal, v0_vertical, x, y, mass0, lifting_area, intake_area
 
 
 # Function to calculate air density
@@ -102,7 +109,8 @@ def thrust_function(air_density, velocity, intake_area):  # This could be modifi
     methane_to_oxygen_ratio = 0.25
     mass_flow_rate_of_fuel = methane_to_oxygen_ratio * mass_flow_rate_of_oxygen
     T = (mass_flow_rate_of_fuel * g) * 3200
-    return T, mass_flow_rate_of_fuel
+    delta_mass = mass_flow_rate_of_oxygen * 0.01
+    return T, mass_flow_rate_of_fuel, delta_mass
 
 
 # Function to calculate lift
@@ -117,8 +125,7 @@ def acceleration_function(state, y, mass, lifting_area, intake_area):
     air_density = air_density_func(y)
 
     # Calculate thrust
-    T, mass_flow_rate_of_fuel = thrust_function(air_density, v_horizontal, intake_area)
-    mass -= mass_flow_rate_of_fuel * 0.01
+    T, mass_flow_rate_of_fuel, delta_mass = thrust_function(air_density, v_horizontal, intake_area)
     # Calculate lift
     lift = lift_function(air_density, v_horizontal, lifting_area)
 
@@ -136,72 +143,81 @@ def acceleration_function(state, y, mass, lifting_area, intake_area):
     # Calculate vertical acceleration
     a_vertical = (lift - gravity_force - drag_vertical) / mass
 
-    return a_horizontal, a_vertical, T
+    return a_horizontal, a_vertical, T, mass_flow_rate_of_fuel, delta_mass
 
 
 # Function to plot results
-def plot_results(time_values, acceleration_values, velocity_values, position_values, thrust_values, mass):
+def plot_results(time_values, acceleration_values, velocity_values, position_values, thrust_values, delta_mass_values,
+                 mass0):
     print("start and end values:")
     print("t:", time_values)
     print("accel:", acceleration_values)
     print("vel:", velocity_values)
     print("x,y:", position_values)
-    print("final mass:", mass)
+    print("mass:", mass0 - np.cumsum(delta_mass_values))
     plt.figure(figsize=(12, 12))
 
-    plt.subplot(3, 2, 1)
-    plt.plot(time_values, acceleration_values[:, 1], label='Vertical Acceleration')
+    plt.subplot(4, 2, 1)
+    plt.plot(time_values, acceleration_values[:, 1])
     plt.xlabel('Time (s)')
     plt.ylabel('Acceleration (m/s^2)')
     plt.title('Vertical Acceleration vs Time')
     plt.legend()
     plt.grid()
 
-    plt.subplot(3, 2, 2)
-    plt.plot(time_values, acceleration_values[:, 0], label='Horizontal Acceleration')
+    plt.subplot(4, 2, 2)
+    plt.plot(time_values, acceleration_values[:, 0])
     plt.xlabel('Time (s)')
     plt.ylabel('Acceleration (m/s^2)')
     plt.title('Horizontal Acceleration vs Time')
     plt.legend()
     plt.grid()
 
-    plt.subplot(3, 2, 3)
-    plt.plot(time_values, velocity_values[:, 1], label='Vertical Velocity')
+    plt.subplot(4, 2, 3)
+    plt.plot(time_values, velocity_values[:, 1])
     plt.xlabel('Time (s)')
     plt.ylabel('Velocity (m/s)')
     plt.title('Vertical Velocity vs Time')
     plt.legend()
     plt.grid()
 
-    plt.subplot(3, 2, 4)
-    plt.plot(time_values, velocity_values[:, 0], label='Horizontal Velocity')
+    plt.subplot(4, 2, 4)
+    plt.plot(time_values, velocity_values[:, 0])
     plt.xlabel('Time (s)')
     plt.ylabel('Velocity (m/s)')
     plt.title('Horizontal Velocity vs Time')
     plt.legend()
     plt.grid()
 
-    plt.subplot(3, 2, 5)
-    plt.plot(time_values, position_values[:, 1], label='Vertical Position')
+    plt.subplot(4, 2, 5)
+    plt.plot(time_values, position_values[:, 1])
     plt.xlabel('Time (s)')
     plt.ylabel('Position (m)')
     plt.title('Vertical Position vs Time')
     plt.legend()
     plt.grid()
 
-    plt.subplot(3, 2, 6)
-    plt.plot(time_values, position_values[:, 0], label='Horizontal Position')
+    plt.subplot(4, 2, 6)
+    plt.plot(time_values, position_values[:, 0])
     plt.xlabel('Time (s)')
     plt.ylabel('Position (m)')
     plt.title('Horizontal Position vs Time')
     plt.legend()
     plt.grid()
 
-    plt.figure(figsize=(12, 8))
-    plt.plot(time_values, thrust_values[:, 0], label='Thrust')
+    plt.subplot(4, 2, 7)
+    plt.plot(time_values, thrust_values[:, 0])
     plt.xlabel('Time (s)')
     plt.ylabel('Newtons (N)')
     plt.title('Thrust vs Time')
+    plt.legend()
+    plt.grid()
+
+    plt.subplot(4, 2, 8)
+    plt.plot(time_values, delta_mass_values)
+    plt.xlabel('Time (s)')
+    plt.ylabel('Mass (Kg/s)')
+    plt.title('Fuel consumption vs Time')
     plt.legend()
     plt.grid()
 
