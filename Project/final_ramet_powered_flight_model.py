@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 
 # Constants
 g = 9.81  # Gravitational constant (m/s^2)
-lift_coefficient = 0.5  # Lift coefficient (estimated)
+lift_coefficient = 0.4  # Lift coefficient: what research I could find suggests max for this type of aircraft is .4
 x0 = 0.0
 y0 = 0.0
 
@@ -91,7 +91,9 @@ def air_density_func(y):
 
 
 # Function to calculate thrust
-def thrust_function(air_density, velocity, intake_area):
+def thrust_function(air_density, velocity, intake_area):  # This could be modified to switch to a traditional rocket
+    # thrust calculation once air density reaches either zero or whenever the constant thrust of a rocket engine would
+    # be greater than the air breathing engine
     mass_flow_rate_of_oxygen = 0.21 * air_density * intake_area * velocity
     methane_to_oxygen_ratio = 0.25
     mass_flow_rate_of_fuel = methane_to_oxygen_ratio * mass_flow_rate_of_oxygen
@@ -112,13 +114,13 @@ def acceleration_function(t, state, y, mass, lifting_area, intake_area):
 
     # Calculate thrust
     T, mass_flow_rate_of_fuel = thrust_function(air_density, v_horizontal, intake_area)
-
+    mass -= mass_flow_rate_of_fuel
     # Calculate lift
     lift = lift_function(air_density, v_horizontal, lifting_area)
 
     # Calculate drag
     drag_coefficient = 0.025
-    cross_sectional_area = 0.5 * np.pi * (lifting_area / 4.5) ** 2
+    cross_sectional_area = 0.5 * np.pi * (lifting_area / 4.5) ** 2  # Possibly the most extreme simplification I've made
     drag_horizontal = 0.5 * drag_coefficient * air_density * cross_sectional_area * v_horizontal ** 2
     drag_vertical = 0.5 * drag_coefficient * air_density * cross_sectional_area * v_vertical ** 2
     # Calculate gravitational force
