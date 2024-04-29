@@ -14,7 +14,11 @@
 # While I was unable to encapsulate the entirety of the nuance to this kind of engine, this is merely meant to be a
 # way to visualize the viability and efficacy of such propulsion methods. In truth the biggest inaccuracy in terms of
 # the simulation is my inability to model the effect of intake design on the efficiency of these engines, instead I
-# opted to assume an ideal intake for the mass flow rate calculations.
+# opted to assume an ideal intake for the mass flow rate calculations. For this to be a valid approximation, aircraft
+# in queation would have to in some way have a variable intake design. ie. The intakes structure would need to
+# morph mid-flight in order to account for the differences in the fluid dynamics at higher mach numbers for this 
+# simulation to be fully applicable. I can conceive of ways that would work, but practically I have never heard of 
+# any such designs being used or even developed. 
 
 import numpy as np
 import matplotlib.pyplot as plt
