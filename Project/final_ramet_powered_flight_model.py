@@ -96,14 +96,14 @@ def get_initial_conditions():
         mass0 = float(input("Enter the initial mass of the craft (kg): "))
         velocity_mag = float(input(
             "Enter the initial velocity magnitude (m/s) ex: 100 m/s would be the minimum to be within the edge of "
-            "believability for Ramjet operation : "))
+            "believability for Ramjet operation: "))
         angle_of_attack = float(input("Enter the angle of attack (degrees): "))
         lifting_area = float(input(
-            "Enter the lifting area (m^2) ex: Lifting body designs have like the x-24 which the drag calculations "
+            "Enter the lifting area (m^2) ex: Lifting body designs like the x-24 which the drag calculations "
             "are based on had 31 m^2: "))
         intake_area = float(input(
             "Enter the intake area (m^2) *realistically should be somewhere between .1-1.5 based on scaling nasa's "
-            "xf43 experimental ramjet craft to size of the space shuttle but is purely an estimate* : "))
+            "xf43 experimental ramjet craft to size of the space shuttle but is purely an estimate*: "))
     except ValueError:
         print("Invalid input. Please enter numeric values.")
         return get_initial_conditions()
@@ -160,7 +160,7 @@ def acceleration_function(state, y, mass, lifting_area, intake_area):
     # Calculate gravitational force
     gravity_force = mass * g
 
-    # Calculate horizontal acceleration ignoring lift's affect in the horizontal
+    # Calculate horizontal acceleration ignoring lift's effect in the horizontal
     a_horizontal = (T - drag_horizontal) / mass
 
     # Calculate vertical acceleration
