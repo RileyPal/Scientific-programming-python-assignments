@@ -14,13 +14,20 @@
 # While I was unable to encapsulate the entirety of the nuance to this kind of engine, this is merely meant to be a
 # way to visualize the viability and efficacy of such propulsion methods. In truth the biggest inaccuracy in terms of
 # the simulation is my inability to model the effect of intake design on the efficiency of these engines, instead I
-# opted to assume an ideal intake for the mass flow rate calculations.
+# opted to assume an ideal intake for the mass flow rate calculations. For this to be a valid approximation, aircraft
+# in question would have to in some way have a variable intake design. i.e. The intakes structure would need to
+# morph mid-flight in order to account for the differences in the fluid dynamics at higher mach numbers for this 
+# simulation to be fully applicable. I can conceive of ways that would work, but practically I have never heard of 
+# any such designs being used or even developed. 
 
 import numpy as np
 import matplotlib.pyplot as plt
 
 # Constants
-g = 9.81  # Gravitational constant (m/s^2)
+g0 = 9.81  # Gravitational constant (m/s^2)
+G = 6.67430e-11  # Gravitational constant in m^3 kg^-1 s^-2
+M = 5.972e24     # Mass of Earth in kg
+R = 6378 * 1000  # Radius of Earth in meters
 lift_coefficient = 0.2  # Lift coefficient: what research I could find suggests max for this type of aircraft is .4
 x0 = 0.0  # Start positions set to zero meters
 y0 = 0.0  #
@@ -92,14 +99,14 @@ def get_initial_conditions():
         mass0 = float(input("Enter the initial mass of the craft (kg): "))
         velocity_mag = float(input(
             "Enter the initial velocity magnitude (m/s) ex: 100 m/s would be the minimum to be within the edge of "
-            "believability for Ramjet operation : "))
+            "believability for Ramjet operation: "))
         angle_of_attack = float(input("Enter the angle of attack (degrees): "))
         lifting_area = float(input(
-            "Enter the lifting area (m^2) ex: Lifting body designs have like the x-24 which the drag calculations "
+            "Enter the lifting area (m^2) ex: Lifting body designs like the x-24 which the drag calculations "
             "are based on had 31 m^2: "))
         intake_area = float(input(
             "Enter the intake area (m^2) *realistically should be somewhere between .1-1.5 based on scaling nasa's "
-            "xf43 experimental ramjet craft to size of the space shuttle but is purely an estimate* : "))
+            "xf43 experimental ramjet craft to size of the space shuttle but is purely an estimate*: "))
     except ValueError:
         print("Invalid input. Please enter numeric values.")
         return get_initial_conditions()
@@ -127,7 +134,7 @@ def thrust_function(air_density, velocity, intake_area):  # This could be modifi
     mass_flow_rate_of_oxygen = 0.21 * air_density * intake_area * velocity
     methane_to_oxygen_ratio = 0.25
     mass_flow_rate_of_fuel = methane_to_oxygen_ratio * mass_flow_rate_of_oxygen  # fuel consumed per second (Kg/s)
-    T = (mass_flow_rate_of_fuel * g) * 3200
+    T = (mass_flow_rate_of_fuel * g0) * 3200
     delta_mass = mass_flow_rate_of_oxygen * dt  # fuel consumed per time step in Kg/.01s
     return T, mass_flow_rate_of_fuel, delta_mass
 
@@ -154,9 +161,10 @@ def acceleration_function(state, y, mass, lifting_area, intake_area):
     drag_horizontal = 0.5 * drag_coefficient * air_density * cross_sectional_area * v_horizontal ** 2
     drag_vertical = 0.5 * drag_coefficient * air_density * cross_sectional_area * v_vertical ** 2
     # Calculate gravitational force
+    g = G * (M / (R + y) ** 2)
     gravity_force = mass * g
 
-    # Calculate horizontal acceleration ignoring lift's affect in the horizontal
+    # Calculate horizontal acceleration ignoring lift's effect in the horizontal
     a_horizontal = (T - drag_horizontal) / mass
 
     # Calculate vertical acceleration
