@@ -4,9 +4,22 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="78b3dbee-a923-497c-ad01-204df1a1427a" name="Changes" comment="progress review stuff">
-      <change afterPath="$PROJECT_DIR$/Project/trying_to_account_for_change_in_gravity.py" afterDir="false" />
+    <list default="true" id="78b3dbee-a923-497c-ad01-204df1a1427a" name="Changes" comment="Compiling nonsense">
+      <change afterPath="$PROJECT_DIR$/final_exam/Palermo_PHYS241FinalScript.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/final_exam/equation_of_state.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/final_exam/generate_matrix.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Final_review/annotate_plot.py" beforeDir="false" afterPath="$PROJECT_DIR$/final_exam/annotate_plot.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Final_review/calculate_bivariate_statistics.py" beforeDir="false" afterPath="$PROJECT_DIR$/final_exam/calculate_bivariate_statistics.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Final_review/calculate_lowest_eigenvectors.py" beforeDir="false" afterPath="$PROJECT_DIR$/final_exam/calculate_lowest_eigenvectors.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Final_review/calculate_quadratics_fit.py" beforeDir="false" afterPath="$PROJECT_DIR$/final_exam/calculate_quadratics_fit.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Final_review/fit_curve_array.py" beforeDir="false" afterPath="$PROJECT_DIR$/final_exam/fit_curve_array.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Final_review/matrix_module.py" beforeDir="false" afterPath="$PROJECT_DIR$/final_exam/matrix_module.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Final_review/module_test_(right_parenthesis).py" beforeDir="false" afterPath="$PROJECT_DIR$/final_exam/module_test_(right_parenthesis).py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Final_review/plot_data_with_fit.py" beforeDir="false" afterPath="$PROJECT_DIR$/final_exam/plot_data_with_fit.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Final_review/read_two_columns_text.py" beforeDir="false" afterPath="$PROJECT_DIR$/final_exam/read_two_columns_text.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Final_review/volumes_energies.dat" beforeDir="false" afterPath="$PROJECT_DIR$/final_exam/volumes_energies.dat" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -170,7 +183,8 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-python-sdk-09665e90c3a7-b11f5e8da5ad-com.jetbrains.pycharm.pro.sharedIndexes.bundled-PY-233.15026.15" />
+        <option value="bundled-js-predefined-1d06a55b98c1-74d2a5396914-JavaScript-PY-241.14494.241" />
+        <option value="bundled-python-sdk-0509580d9d50-28c9f5db9ffe-com.jetbrains.pycharm.pro.sharedIndexes.bundled-PY-241.14494.241" />
       </set>
     </attachedChunks>
   </component>
@@ -210,6 +224,7 @@
       <workItem from="1713971704529" duration="1553000" />
       <workItem from="1714071228580" duration="4713000" />
       <workItem from="1714747362952" duration="1031000" />
+      <workItem from="1715187652114" duration="310000" />
     </task>
     <task id="LOCAL-00001" summary="progress on 1-9">
       <option name="closed" value="true" />
@@ -549,7 +564,7 @@
           <option name="timeStamp" value="2" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/Final_review/module_test_(right_parenthesis).py</url>
+          <url>file://$PROJECT_DIR$/final_exam/module_test_(right_parenthesis).py</url>
           <line>3</line>
           <option name="timeStamp" value="3" />
         </line-breakpoint>
