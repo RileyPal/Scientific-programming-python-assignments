@@ -4,15 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="78b3dbee-a923-497c-ad01-204df1a1427a" name="Changes" comment="Final stuff">
-      <change afterPath="$PROJECT_DIR$/final_exam/chemical_symbol_crystal_symmetry_approximation_acronym.dat" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/final_exam/convert_units.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/final_exam/Palermo_PHYS241FinalScript.py" beforeDir="false" afterPath="$PROJECT_DIR$/final_exam/Palermo_PHYS241FinalScript.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/final_exam/calculate_bivariate_statistics.py" beforeDir="false" afterPath="$PROJECT_DIR$/final_exam/calculate_bivariate_statistics.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/final_exam/read_two_columns_text.py" beforeDir="false" afterPath="$PROJECT_DIR$/final_exam/read_two_columns_text.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/final_exam/volumes_energies.dat" beforeDir="false" />
-    </list>
+    <list default="true" id="78b3dbee-a923-497c-ad01-204df1a1427a" name="Changes" comment="Final stuff" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -220,7 +212,7 @@
       <workItem from="1713971704529" duration="1553000" />
       <workItem from="1714071228580" duration="4713000" />
       <workItem from="1714747362952" duration="1031000" />
-      <workItem from="1715187652114" duration="3323000" />
+      <workItem from="1715187652114" duration="3816000" />
     </task>
     <task id="LOCAL-00001" summary="progress on 1-9">
       <option name="closed" value="true" />
@@ -534,7 +526,15 @@
       <option name="project" value="LOCAL" />
       <updated>1715188488926</updated>
     </task>
-    <option name="localTasksCounter" value="40" />
+    <task id="LOCAL-00040" summary="Final stuff">
+      <option name="closed" value="true" />
+      <created>1715191532382</created>
+      <option name="number" value="00040" />
+      <option name="presentableId" value="LOCAL-00040" />
+      <option name="project" value="LOCAL" />
+      <updated>1715191532382</updated>
+    </task>
+    <option name="localTasksCounter" value="41" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
