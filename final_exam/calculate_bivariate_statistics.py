@@ -27,9 +27,9 @@ if __name__ == "__main__":
     data = np.array([x_values, y_values])
 
     try:
-        data = np.loadtxt("volumes_energies.dat").T
+        data = np.loadtxt("chemical_symbol_crystal_symmetry_approximation_acronym.dat").T
         statistics = calculate_bivariate_statistics(data)
-        print("Statistics for volumes_energies.dat:")
+        print("Statistics for chemical_symbol_crystal_symmetry_approximation_acronym.dat:")
         print("Mean of y:", statistics[0])
         print("Standard deviation of y:", statistics[1])
         print("Minimum x-value:", statistics[2])

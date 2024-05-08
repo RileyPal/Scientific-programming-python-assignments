@@ -5,9 +5,9 @@ Author: Riley Palermo
 import numpy as np
 
 
-def read_two_columns_text(volumes_energies: str) -> np.ndarray:
+def read_two_columns_text(chemical_symbol_crystal_symmetry_approximation_acronym: str) -> np.ndarray:
     try:
-        data = np.loadtxt(volumes_energies, dtype=float).T
+        data = np.loadtxt(chemical_symbol_crystal_symmetry_approximation_acronym, dtype=float).T
         if data.shape[0] != 2:
             raise ValueError("File should contain exactly two columns")
         return data
@@ -16,7 +16,7 @@ def read_two_columns_text(volumes_energies: str) -> np.ndarray:
 
 
 if __name__ == "__main__":
-    filename = "volumes_energies.dat"
+    filename = "chemical_symbol_crystal_symmetry_approximation_acronym.dat"
     try:
         data = read_two_columns_text(filename)
         print(f"{data=}, shape={data.shape}")

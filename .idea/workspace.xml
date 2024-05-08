@@ -4,7 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="78b3dbee-a923-497c-ad01-204df1a1427a" name="Changes" comment="Final stuff" />
+    <list default="true" id="78b3dbee-a923-497c-ad01-204df1a1427a" name="Changes" comment="Final stuff">
+      <change afterPath="$PROJECT_DIR$/final_exam/chemical_symbol_crystal_symmetry_approximation_acronym.dat" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/final_exam/convert_units.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/final_exam/Palermo_PHYS241FinalScript.py" beforeDir="false" afterPath="$PROJECT_DIR$/final_exam/Palermo_PHYS241FinalScript.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/final_exam/calculate_bivariate_statistics.py" beforeDir="false" afterPath="$PROJECT_DIR$/final_exam/calculate_bivariate_statistics.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/final_exam/read_two_columns_text.py" beforeDir="false" afterPath="$PROJECT_DIR$/final_exam/read_two_columns_text.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/final_exam/volumes_energies.dat" beforeDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -41,92 +49,96 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Python.Main.executor&quot;: &quot;Run&quot;,
-    &quot;Python.VPython_00_and_01.executor&quot;: &quot;Run&quot;,
-    &quot;Python.WIP_draft.executor&quot;: &quot;Run&quot;,
-    &quot;Python.WIP_ramjet_powered_flight.executor&quot;: &quot;Run&quot;,
-    &quot;Python.animate_ball_trajectories.executor&quot;: &quot;Run&quot;,
-    &quot;Python.annotate_plot.executor&quot;: &quot;Run&quot;,
-    &quot;Python.birthday_station.executor&quot;: &quot;Run&quot;,
-    &quot;Python.birthday_vector.executor&quot;: &quot;Run&quot;,
-    &quot;Python.build_polynomial_from _product.executor&quot;: &quot;Run&quot;,
-    &quot;Python.calculate_bivariate_statistics.executor&quot;: &quot;Run&quot;,
-    &quot;Python.calculate_egg_cook_time.executor&quot;: &quot;Run&quot;,
-    &quot;Python.calculate_gaussian.executor&quot;: &quot;Run&quot;,
-    &quot;Python.calculate_interest_growth.executor&quot;: &quot;Run&quot;,
-    &quot;Python.calculate_liter_mass.executor&quot;: &quot;Run&quot;,
-    &quot;Python.calculate_numerical_derivatives.executor&quot;: &quot;Run&quot;,
-    &quot;Python.calculate_piecewise_function.executor&quot;: &quot;Run&quot;,
-    &quot;Python.calculate_quadratic_roots.executor&quot;: &quot;Run&quot;,
-    &quot;Python.calculate_vleocity_and_acceleration.executor&quot;: &quot;Run&quot;,
-    &quot;Python.compare_list_and_dictionary.executor&quot;: &quot;Run&quot;,
-    &quot;Python.compute_heaviside.executor&quot;: &quot;Run&quot;,
-    &quot;Python.constant_powered_flight.executor&quot;: &quot;Run&quot;,
-    &quot;Python.construct_polynomial_from _product.executor&quot;: &quot;Run&quot;,
-    &quot;Python.convert_celsius_temperature_to_fahrenheit.executor&quot;: &quot;Run&quot;,
-    &quot;Python.convert_fahrenheit_temperature_to_celsius_from_command_line.executor&quot;: &quot;Run&quot;,
-    &quot;Python.convert_fahrenheit_temperature_to_celsius_from_file.executor&quot;: &quot;Run&quot;,
-    &quot;Python.convert_length.executor&quot;: &quot;Run&quot;,
-    &quot;Python.convert_temp.executor&quot;: &quot;Run&quot;,
-    &quot;Python.convert_temperature.executor&quot;: &quot;Run&quot;,
-    &quot;Python.convert_temperature_to_celsius_between_file.executor&quot;: &quot;Run&quot;,
-    &quot;Python.create_constants_dictionary.executor&quot;: &quot;Run&quot;,
-    &quot;Python.create_stars_dictionary.executor&quot;: &quot;Run&quot;,
-    &quot;Python.fifth_eigenvector.executor&quot;: &quot;Run&quot;,
-    &quot;Python.final_ramet_powered_flight_model.executor&quot;: &quot;Run&quot;,
-    &quot;Python.generate_coordinate_grid.executor&quot;: &quot;Run&quot;,
-    &quot;Python.integrate_by_trapezoids_adaptively.executor&quot;: &quot;Run&quot;,
-    &quot;Python.logarithmic_sum.executor&quot;: &quot;Run&quot;,
-    &quot;Python.module_test_(right_parenthesis).executor&quot;: &quot;Run&quot;,
-    &quot;Python.module_test_(type).executor&quot;: &quot;Run&quot;,
-    &quot;Python.plot_trajectory.executor&quot;: &quot;Run&quot;,
-    &quot;Python.plot_vertical_trajectory.executor&quot;: &quot;Run&quot;,
-    &quot;Python.plot_wavepacket.executor&quot;: &quot;Run&quot;,
-    &quot;Python.read_and_plot_logarithmic_sum_output.executor&quot;: &quot;Run&quot;,
-    &quot;Python.read_two_columns_text.executor&quot;: &quot;Run&quot;,
-    &quot;Python.scratch.executor&quot;: &quot;Run&quot;,
-    &quot;Python.scratch_1.executor&quot;: &quot;Run&quot;,
-    &quot;Python.scratch_2.executor&quot;: &quot;Run&quot;,
-    &quot;Python.scratch_3.executor&quot;: &quot;Run&quot;,
-    &quot;Python.scratch_4.executor&quot;: &quot;Run&quot;,
-    &quot;Python.sort_stars_data.executor&quot;: &quot;Run&quot;,
-    &quot;Python.sum_integer.executor&quot;: &quot;Run&quot;,
-    &quot;Python.sum_integer_reciprocals_using_while.executor&quot;: &quot;Run&quot;,
-    &quot;Python.sum_integer_reciprocals_using_wile.executor&quot;: &quot;Debug&quot;,
-    &quot;Python.sum_sines.executor&quot;: &quot;Run&quot;,
-    &quot;Python.table_temperature_conversion_and_approximation.executor&quot;: &quot;Run&quot;,
-    &quot;Python.table_temperature_conversion_with_while.executor&quot;: &quot;Run&quot;,
-    &quot;Python.table_vertical_projectile_positions.executor&quot;: &quot;Run&quot;,
-    &quot;Python.test_conditions_vs_altitude.executor&quot;: &quot;Run&quot;,
-    &quot;Python.testing_grounds.executor&quot;: &quot;Run&quot;,
-    &quot;Python.unpowered_flight.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;database.data.extractors.current.export.id&quot;: &quot;Comma-separated (CSV)_id&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;ignore_missing_gitignore&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/ellie/PycharmProjects/Scientific-programming-python-assignments/Final_review&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;editor.preferences.tabs&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Python.Main.executor": "Run",
+    "Python.Palermo_PHYS241FinalScript.executor": "Run",
+    "Python.VPython_00_and_01.executor": "Run",
+    "Python.WIP_draft.executor": "Run",
+    "Python.WIP_ramjet_powered_flight.executor": "Run",
+    "Python.animate_ball_trajectories.executor": "Run",
+    "Python.annotate_plot.executor": "Run",
+    "Python.birthday_station.executor": "Run",
+    "Python.birthday_vector.executor": "Run",
+    "Python.build_polynomial_from _product.executor": "Run",
+    "Python.calculate_bivariate_statistics.executor": "Run",
+    "Python.calculate_egg_cook_time.executor": "Run",
+    "Python.calculate_gaussian.executor": "Run",
+    "Python.calculate_interest_growth.executor": "Run",
+    "Python.calculate_liter_mass.executor": "Run",
+    "Python.calculate_numerical_derivatives.executor": "Run",
+    "Python.calculate_piecewise_function.executor": "Run",
+    "Python.calculate_quadratic_roots.executor": "Run",
+    "Python.calculate_vleocity_and_acceleration.executor": "Run",
+    "Python.compare_list_and_dictionary.executor": "Run",
+    "Python.compute_heaviside.executor": "Run",
+    "Python.constant_powered_flight.executor": "Run",
+    "Python.construct_polynomial_from _product.executor": "Run",
+    "Python.convert_celsius_temperature_to_fahrenheit.executor": "Run",
+    "Python.convert_fahrenheit_temperature_to_celsius_from_command_line.executor": "Run",
+    "Python.convert_fahrenheit_temperature_to_celsius_from_file.executor": "Run",
+    "Python.convert_length.executor": "Run",
+    "Python.convert_temp.executor": "Run",
+    "Python.convert_temperature.executor": "Run",
+    "Python.convert_temperature_to_celsius_between_file.executor": "Run",
+    "Python.create_constants_dictionary.executor": "Run",
+    "Python.create_stars_dictionary.executor": "Run",
+    "Python.fifth_eigenvector.executor": "Run",
+    "Python.final_ramet_powered_flight_model.executor": "Run",
+    "Python.generate_coordinate_grid.executor": "Run",
+    "Python.integrate_by_trapezoids_adaptively.executor": "Run",
+    "Python.logarithmic_sum.executor": "Run",
+    "Python.module_test_(right_parenthesis).executor": "Run",
+    "Python.module_test_(type).executor": "Run",
+    "Python.plot_trajectory.executor": "Run",
+    "Python.plot_vertical_trajectory.executor": "Run",
+    "Python.plot_wavepacket.executor": "Run",
+    "Python.read_and_plot_logarithmic_sum_output.executor": "Run",
+    "Python.read_two_columns_text.executor": "Run",
+    "Python.scratch.executor": "Run",
+    "Python.scratch_1.executor": "Run",
+    "Python.scratch_2.executor": "Run",
+    "Python.scratch_3.executor": "Run",
+    "Python.scratch_4.executor": "Run",
+    "Python.sort_stars_data.executor": "Run",
+    "Python.sum_integer.executor": "Run",
+    "Python.sum_integer_reciprocals_using_while.executor": "Run",
+    "Python.sum_integer_reciprocals_using_wile.executor": "Debug",
+    "Python.sum_sines.executor": "Run",
+    "Python.table_temperature_conversion_and_approximation.executor": "Run",
+    "Python.table_temperature_conversion_with_while.executor": "Run",
+    "Python.table_vertical_projectile_positions.executor": "Run",
+    "Python.test_conditions_vs_altitude.executor": "Run",
+    "Python.testing_grounds.executor": "Run",
+    "Python.unpowered_flight.executor": "Run",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "database.data.extractors.current.export.id": "Comma-separated (CSV)_id",
+    "git-widget-placeholder": "master",
+    "ignore.virus.scanning.warn.message": "true",
+    "ignore_missing_gitignore": "true",
+    "last_opened_file_path": "C:/Users/ellie/PycharmProjects/Scientific-programming-python-assignments/Final_review",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "editor.preferences.tabs",
+    "vue.rearranger.settings.migration": "true"
   },
-  &quot;keyToStringList&quot;: {
-    &quot;com.intellij.ide.scratch.ScratchImplUtil$2/New Scratch File&quot;: [
-      &quot;Python&quot;
+  "keyToStringList": {
+    "com.intellij.ide.scratch.ScratchImplUtil$2/New Scratch File": [
+      "Python"
     ]
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\ellie\PycharmProjects\Scientific-programming-python-assignments\Final_review" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\paler\PycharmProjects\experiment\Final_review" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -208,7 +220,7 @@
       <workItem from="1713971704529" duration="1553000" />
       <workItem from="1714071228580" duration="4713000" />
       <workItem from="1714747362952" duration="1031000" />
-      <workItem from="1715187652114" duration="609000" />
+      <workItem from="1715187652114" duration="3323000" />
     </task>
     <task id="LOCAL-00001" summary="progress on 1-9">
       <option name="closed" value="true" />
@@ -514,7 +526,15 @@
       <option name="project" value="LOCAL" />
       <updated>1715188259432</updated>
     </task>
-    <option name="localTasksCounter" value="39" />
+    <task id="LOCAL-00039" summary="Final stuff">
+      <option name="closed" value="true" />
+      <created>1715188488926</created>
+      <option name="number" value="00039" />
+      <option name="presentableId" value="LOCAL-00039" />
+      <option name="project" value="LOCAL" />
+      <updated>1715188488926</updated>
+    </task>
+    <option name="localTasksCounter" value="40" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -566,7 +586,7 @@
           <option name="timeStamp" value="2" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/final_review/module_test_(right_parenthesis).py</url>
+          <url>file://$PROJECT_DIR$/final_exam/module_test_(right_parenthesis).py</url>
           <line>3</line>
           <option name="timeStamp" value="3" />
         </line-breakpoint>
@@ -609,16 +629,17 @@
     <SUITE FILE_PATH="coverage/experiment$calculate_interest_growth.coverage" NAME="calculate_interest_growth Coverage Results" MODIFIED="1709670777564" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$APPLICATION_CONFIG_DIR$/scratches" />
     <SUITE FILE_PATH="coverage/experiment$convert_length.coverage" NAME="convert_length Coverage Results" MODIFIED="1707504025105" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$APPLICATION_CONFIG_DIR$/scratches" />
     <SUITE FILE_PATH="coverage/Scientific_programming_python_assignments$fill_arrays_by_for_loop.coverage" NAME="fill_arrays_by_for_loop Coverage Results" MODIFIED="1711390441359" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/array_computing_and_curve_plotting" />
-    <SUITE FILE_PATH="coverage/Scientific_programming_python_assignments$read_two_columns_text.coverage" NAME="read_two_columns_text Coverage Results" MODIFIED="1714678501262" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Final_review" />
+    <SUITE FILE_PATH="coverage/Scientific_programming_python_assignments$read_two_columns_text.coverage" NAME="read_two_columns_text Coverage Results" MODIFIED="1715190731862" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/final_exam" />
     <SUITE FILE_PATH="coverage/experiment$convert_celsius_temperature_to_fahrenheit.coverage" NAME="convert_celsius_temperature_to_fahrenheit Coverage Results" MODIFIED="1709826854671" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/functions_and_branching" />
+    <SUITE FILE_PATH="coverage/Scientific_programming_python_assignments$Palermo_PHYS241FinalScript.coverage" NAME="Palermo_PHYS241FinalScript Coverage Results" MODIFIED="1715190745564" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/final_exam" />
     <SUITE FILE_PATH="coverage/experiment$convert_fahrenheit_temperature_to_celsius_from_file.coverage" NAME="convert_fahrenheit_temperature_to_celsius_from_file Coverage Results" MODIFIED="1710439044936" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/user_input_and_error_handling" />
     <SUITE FILE_PATH="coverage/experiment$calculate_numerical_derivatives.coverage" NAME="calculate_numerical_derivatives Coverage Results" MODIFIED="1710274597201" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/functions_and_branching" />
     <SUITE FILE_PATH="coverage/Scientific_programming_python_assignments$calculate_bivariate_statistics.coverage" NAME="calculate_bivariate_statistics Coverage Results" MODIFIED="1714678522017" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Final_review" />
     <SUITE FILE_PATH="coverage/Scientific_programming_python_assignments$plot_trajectory.coverage" NAME="plot_trajectory Coverage Results" MODIFIED="1711482001308" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/array_computing_and_curve_plotting" />
     <SUITE FILE_PATH="coverage/Scientific_programming_python_assignments$create_constants_dictionary.coverage" NAME="create_constants_dictionary Coverage Results" MODIFIED="1712158112005" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/dictionaries_and_strings" />
-    <SUITE FILE_PATH="coverage/Scientific_programming_python_assignments$module_test__right_parenthesis_.coverage" NAME="module_test_(right_parenthesis) Coverage Results" MODIFIED="1714678925327" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Final_review" />
     <SUITE FILE_PATH="coverage/experiment$convert_temp.coverage" NAME="convert_temp Coverage Results" MODIFIED="1710443758330" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/user_input_and_error_handling" />
     <SUITE FILE_PATH="coverage/Scientific_programming_python_assignments$WIP_draft.coverage" NAME="WIP_draft Coverage Results" MODIFIED="1713902467797" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Project" />
+    <SUITE FILE_PATH="coverage/Scientific_programming_python_assignments$module_test__right_parenthesis_.coverage" NAME="module_test_(right_parenthesis) Coverage Results" MODIFIED="1715191009750" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/final_exam" />
     <SUITE FILE_PATH="coverage/Scientific_programming_python_assignments$VPython_00_and_01.coverage" NAME="VPython_00_and_01 Coverage Results" MODIFIED="1712254245269" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/VPython00_and01" />
     <SUITE FILE_PATH="coverage/experiment$construct_polynomial_from__product.coverage" NAME="construct_polynomial_from _product Coverage Results" MODIFIED="1710257947321" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/functions_and_branching" />
     <SUITE FILE_PATH="coverage/Scientific_programming_python_assignments$plot_wavepacket.coverage" NAME="plot_wavepacket Coverage Results" MODIFIED="1711490232903" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/array_computing_and_curve_plotting" />
