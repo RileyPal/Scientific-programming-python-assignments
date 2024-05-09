@@ -20,7 +20,7 @@ def fit_curve_array(quadratic_coefficients: np.ndarray, minimum_x: float, maximu
 
 if __name__ == "__main__":
     # Test with quadratic coefficients of [0, 0, 1], minimum x-value of -2, and maximum x-value of 2
-    quadratic_coefficients = np.array([0, 0, 1])
+    quadratic_coefficients = np.array([1, 0, 0])
     minimum_x = -2
     maximum_x = 2
 

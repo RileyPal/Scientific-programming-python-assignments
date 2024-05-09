@@ -65,11 +65,10 @@ def main():
 
     # Part 2: Visualize Vectors in Space
     Ndim = 100  # Number of grid points
-    matrix_parameters = (Ndim, 'square', 5)  # Potential, Ndim, and Parameter
-    matrix = generate_matrix(-2, 2, Ndim, *matrix_parameters)
+    matrix = generate_matrix(-2, 2, Ndim, 'square', 5)
 
     # Calculate lowest eigenvectors and eigenvalues
-    eigenvalues, eigenvectors = calculate_lowest_eigenvectors(matrix, 3)
+    eigenvalues, eigenvectors = calculate_lowest_eigenvectors(matrix, 100)
 
     # Generate grid of spatial points
     grid_points = np.linspace(-10, 10, Ndim)

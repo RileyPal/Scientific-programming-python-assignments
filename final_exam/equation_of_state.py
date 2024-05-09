@@ -50,7 +50,7 @@ def fit_eos(volumes, energies, quadratic_coefficients, eos='vinet', number_of_po
                           bulk_modulus_derivative, quadratic_axis_of_symmetry]
 
     eos_parameters, eos_covariances = curve_fit(lambda_dictionary[eos.lower()], volumes, energies,
-                                                p0=initial_parameters, method='trf')  # ,
+                                                p0=initial_parameters, method='lm')  # ,
     # x_scale=[10**np.floor(np.log10(np.amin(np.abs(energies)))), 100, 1,
     #         10**np.floor(np.log10(np.amin(np.abs(volumes))))])
     fit_curve_volumes = np.linspace(minimum_volume, maximum_volume, num=number_of_points)
