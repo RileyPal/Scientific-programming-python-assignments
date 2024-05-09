@@ -3,7 +3,7 @@
 import numpy as np
 import matplotlib.pyplot as plt
 import datetime
-
+from calculate_bivariate_statistics import calculate_bivariate_statistics
 from read_two_columns_text import read_two_columns_text
 from calculate_quadratics_fit import calculate_quadratic_fit
 from equation_of_state import fit_eos
@@ -32,6 +32,7 @@ def main():
 
     # Fit a quadratic polynomial to the data
     quadratic_coefficients = calculate_quadratic_fit(data)
+    mean_y, std_y, min_x, max_x, min_y, max_y = calculate_bivariate_statistics(data)
 
     # Fit EOS
     eos_fit, eos_parameters = fit_eos(data[0], data[1], quadratic_coefficients, eos='murnaghan')
@@ -65,7 +66,7 @@ def main():
 
     # Part 2: Visualize Vectors in Space
     Ndim = 100  # Number of grid points
-    matrix = generate_matrix(-2, 2, Ndim, 'square', 5)
+    matrix = generate_matrix(min_x, max_x, Ndim, 'square', 5)
 
     # Calculate lowest eigenvectors and eigenvalues
     eigenvalues, eigenvectors = calculate_lowest_eigenvectors(matrix, 100)
