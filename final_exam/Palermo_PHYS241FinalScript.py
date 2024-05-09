@@ -1,15 +1,10 @@
 # Riley_Palermo_PHYS241FinalScript.py
 
-"""
-Author: Riley Palermo
-"""
-
 import numpy as np
 import matplotlib.pyplot as plt
 import datetime
 
 from read_two_columns_text import read_two_columns_text
-from calculate_bivariate_statistics import calculate_bivariate_statistics
 from calculate_quadratics_fit import calculate_quadratic_fit
 from equation_of_state import fit_eos
 from convert_units import convert_units
@@ -18,31 +13,12 @@ from calculate_lowest_eigenvectors import calculate_lowest_eigenvectors
 from generate_matrix import generate_matrix
 
 
-# Function to parse file name and extract chemical symbol, crystal symmetry symbol, and approximation acronym
+# Function to parse file name and extract chemical symbol, crystal symmetry, and approximation acronym
 def parse_file_name(file_name):
-    """
-    Extracts the chemical symbol, crystal symmetry symbol, and density functional exchange-correlation approximation
-    acronym from the given file name.
-    :param file_name: str: The name of the file containing the data.
-    :return: tuple: A tuple containing the extracted strings.
-    """
-    # Split the file name into components using underscores as delimiters
     components = file_name.split('_')
-
-    # Check if the components list has enough elements
     if len(components) < 3:
         raise ValueError("Invalid file name format. Unable to extract required components.")
-
-    # Extract the chemical symbol
-    chemical_symbol = components[0]
-
-    # Extract the crystal symmetry symbol
-    crystal_symmetry = components[1]
-
-    # Extract the approximation acronym
-    approximation_acronym = components[2]
-
-    return chemical_symbol, crystal_symmetry, approximation_acronym
+    return components[0], components[1], components[2]
 
 
 # Main function to perform the tasks
@@ -54,27 +30,21 @@ def main():
     # Read data
     data = read_two_columns_text(file_name)
 
-    # Divide by number of atoms if needed
-    # data /= 2  # Uncomment this line if needed
-
-    # Calculate statistics
-    statistics = calculate_bivariate_statistics(data)
-
     # Fit a quadratic polynomial to the data
     quadratic_coefficients = calculate_quadratic_fit(data)
 
     # Fit EOS
-    eos_fit = fit_eos(data[0], data[1], quadratic_coefficients)
+    eos_fit, eos_parameters = fit_eos(data[0], data[1], quadratic_coefficients, eos='murnaghan')
 
     # Convert units
-    converted_volume = convert_units(eos_fit[0], 'bohr3/atom', 'Angstrom3/atom')
-    converted_energy = convert_units(eos_fit[1], 'rydberg/atom', 'eV/atom')
-    converted_bulk_modulus = convert_units(eos_fit[2], 'rydberg/bohr3', 'GPa')
+    converted_volume = convert_units(eos_fit, 'bohr3/atom', 'Angstrom3/atom')
+    converted_energy = convert_units(eos_fit, 'rydberg/atom', 'eV/atom')
+    converted_bulk_modulus = convert_units(eos_parameters[1], 'rydberg/bohr3', 'GPa')
 
     # Plot data and fit function
     plt.figure()
-    plt.plot(data[0], data[1], 'bo')  # Data points
-    plt.plot(converted_volume, converted_energy, 'k-')  # Fit curve
+    plt.plot(converted_volume, converted_energy, 'bo')  # Data points
+    plt.plot(converted_volume, eos_fit, 'k-')  # Fit curve
     plt.xlabel(r'Volume ($\AA^3$/atom)')
     plt.ylabel(r'Energy (eV/atom)')
     plt.title(f'{approximation_acronym} Equation of State for {chemical_symbol} in DFT ({crystal_symmetry})')
@@ -95,8 +65,8 @@ def main():
 
     # Part 2: Visualize Vectors in Space
     Ndim = 100  # Number of grid points
-    matrix_parameters = (Ndim, 2, 2)  # Update with your matrix parameters
-    matrix = generate_matrix(*matrix_parameters)
+    matrix_parameters = (Ndim, 'square', 5)  # Potential, Ndim, and Parameter
+    matrix = generate_matrix(-2, 2, Ndim, *matrix_parameters)
 
     # Calculate lowest eigenvectors and eigenvalues
     eigenvalues, eigenvectors = calculate_lowest_eigenvectors(matrix, 3)

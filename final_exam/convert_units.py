@@ -19,7 +19,10 @@ def convert_units(value, from_units, to_units):
     conversion_factors = {
         'bohr3/atom': 0.14818471147216278,  # cubic bohr to cubic angstroms
         'rydberg/atom': 13.605693122994,     # rydberg to electron volts
-        'rydberg/bohr3': 14710.507848260711  # rydberg per cubic bohr to gigapascals
+        'rydberg/bohr3': 14710.507848260711,  # rydberg per cubic bohr to gigapascals
+        'Angstrom3/atom': 1.0,
+        'eV/atom': 1.0,
+        'GPa': 1.0
     }
 
     # Perform conversion
