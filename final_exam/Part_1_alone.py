@@ -3,6 +3,7 @@
 """
 Author: Riley Palermo
 """
+import sys
 
 import numpy as np
 import matplotlib.pyplot as plt
@@ -17,36 +18,27 @@ from annotate_plot import annotate_plot
 
 
 # Function to parse file name and extract chemical symbol, crystal symmetry symbol, and approximation acronym
-def parse_file_name(file_name):
-    """
-    Extracts the chemical symbol, crystal symmetry symbol, and density functional exchange-correlation approximation
-    acronym from the given file name.
-    :param file_name: str: The name of the file containing the data.
-    :return: tuple: A tuple containing the extracted strings.
-    """
-    # Split the file name into components using underscores as delimiters
-    components = file_name.split('_')
+def parse_file_name(filename):
+    global chemical_symbol
+    try:
+        split_filename = str.split(filename, '.')
+        chemical_symbol = split_filename[0]
+        crystal_symmetry_symbol = split_filename[1]
+        density_functional_exchange_acronym = split_filename[2]
+    except TypeError:
+        print("Please input valid filename as string")
+        sys.exit(1)
+    except IndexError:
+        print("Please input valid filename (separated by '.'s) as string")
+        sys.exit(1)
+    return chemical_symbol, crystal_symmetry_symbol, density_functional_exchange_acronym
 
-    # Check if the components list has enough elements
-    if len(components) < 3:
-        raise ValueError("Invalid file name format. Unable to extract required components.")
-
-    # Extract the chemical symbol
-    chemical_symbol = components[0]
-
-    # Extract the crystal symmetry symbol
-    crystal_symmetry = components[1]
-
-    # Extract the approximation acronym
-    approximation_acronym = components[2]
-
-    return chemical_symbol, crystal_symmetry, approximation_acronym
 
 
 # Main function to perform the tasks for part 1
 def main():
     # Extract information from file name
-    file_name = "chemical_symbol_crystal_symmetry_approximation_acronym.dat"
+    file_name = "Si.Fd-3m.GGA-PBEsol.volumes_energies.dat"
     chemical_symbol, crystal_symmetry, approximation_acronym = parse_file_name(file_name)
 
     # Read data
