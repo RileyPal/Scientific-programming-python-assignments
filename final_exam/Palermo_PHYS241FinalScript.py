@@ -44,11 +44,14 @@ def main():
     mean_y, std_y, min_x, max_x, min_y, max_y = calculate_bivariate_statistics(data)
 
     # Fit EOS
-    eos_fit, eos_parameters = fit_eos(data[0], data[1], quadratic_coefficients, eos='murnaghan', number_of_points=100)
+    eos_fit, eos_parameters = fit_eos(data[0], data[1], quadratic_coefficients, eos='vinet', number_of_points=100)
+    # Recreate volume array to match the length of the energy array
+    min_volume, max_volume = min(data[0]), max(data[0])
+    volume = np.linspace(min_volume, max_volume, len(eos_fit))
 
     # Convert units
-    converted_volume = convert_units(eos_fit, 'bohr3/atom', 'Angstrom3/atom')
     converted_energy = convert_units(eos_fit, 'rydberg/atom', 'eV/atom')
+    converted_volume = convert_units(volume, 'bohr3/atom', 'Angstrom3/atom')
     converted_bulk_modulus = convert_units(eos_parameters[1], 'rydberg/bohr3', 'GPa')
 
     # Plot data and fit function
@@ -59,15 +62,15 @@ def main():
     plt.ylabel(r'Energy (eV/atom)')
     plt.title(f'{approximation_acronym} Equation of State for {chemical_symbol} in DFT ({crystal_symmetry})')
     annotate_plot({
-        chemical_symbol: {'position': (0.1, 0.9), 'alignment': ['left', 'top'], 'fontsize': 12},
-        crystal_symmetry: {'position': (np.mean(converted_volume), np.min(converted_energy) + 0.1),
-                           'alignment': ['center', 'bottom'], 'fontsize': 10},
+        chemical_symbol: {'position': (0.1, 0.9), 'alignment': ['left', 'top'], 'fontsize': 10},
+        crystal_symmetry: {'position': (np.mean(converted_volume), np.min(converted_energy) + 0.0),
+                           'alignment': ['center', 'bottom'], 'fontsize': 8},
         f'Bulk Modulus: {converted_bulk_modulus:.1f} GPa': {
-            'position': (np.mean(converted_volume), np.min(converted_energy) + 0.2), 'alignment': ['center', 'bottom'],
-            'fontsize': 10},
+            'position': (np.mean(converted_volume) + 2, np.min(converted_energy)), 'alignment': ['center', 'bottom'],
+            'fontsize': 8},
         f'Equilibrium Volume: {np.min(converted_volume):.2f} Å^3/atom': {
-            'position': (np.min(converted_volume), np.min(converted_energy) + 0.5), 'alignment': ['left', 'bottom'],
-            'fontsize': 10}
+            'position': (np.min(converted_volume) - 1, np.min(converted_energy)), 'alignment': ['left', 'bottom'],
+            'fontsize': 8}
     })
 
     # Part 2: Visualize Vectors in Space
