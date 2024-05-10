@@ -35,7 +35,7 @@ def main():
     mean_y, std_y, min_x, max_x, min_y, max_y = calculate_bivariate_statistics(data)
 
     # Fit EOS
-    eos_fit, eos_parameters = fit_eos(data[0], data[1], quadratic_coefficients, eos='murnaghan')
+    eos_fit, eos_parameters = fit_eos(data[0], data[1], quadratic_coefficients, eos='murnaghan', number_of_points=100)
 
     # Convert units
     converted_volume = convert_units(eos_fit, 'bohr3/atom', 'Angstrom3/atom')
@@ -58,10 +58,7 @@ def main():
             'fontsize': 10},
         f'Equilibrium Volume: {np.min(converted_volume):.2f} Å^3/atom': {
             'position': (np.min(converted_volume), np.min(converted_energy) + 0.5), 'alignment': ['left', 'bottom'],
-            'fontsize': 10},
-        f'Created by Riley {datetime.date.today().isoformat()}': {
-            'position': (np.min(converted_volume), np.min(converted_energy)), 'alignment': ['left', 'bottom'],
-            'fontsize': 8}
+            'fontsize': 10}
     })
 
     # Part 2: Visualize Vectors in Space
