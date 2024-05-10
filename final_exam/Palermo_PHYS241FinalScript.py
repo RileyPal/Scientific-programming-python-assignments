@@ -1,4 +1,5 @@
 # Riley_Palermo_PHYS241FinalScript.py
+import sys
 
 import numpy as np
 import matplotlib.pyplot as plt
@@ -14,17 +15,25 @@ from generate_matrix import generate_matrix
 
 
 # Function to parse file name and extract chemical symbol, crystal symmetry, and approximation acronym
-def parse_file_name(file_name):
-    components = file_name.split('_')
-    if len(components) < 3:
-        raise ValueError("Invalid file name format. Unable to extract required components.")
-    return components[0], components[1], components[2]
+def parse_file_name(filename):
+    try:
+        split_filename = str.split(filename, '.')
+        chemical_symbol = split_filename[0]
+        crystal_symmetry_symbol = split_filename[1]
+        density_functional_exchange_acronym = split_filename[2]
+    except TypeError:
+        print("Please input valid filename as string")
+        sys.exit(1)
+    except IndexError:
+        print("Please input valid filename (separated by '.'s) as string")
+        sys.exit(1)
+    return chemical_symbol, crystal_symmetry_symbol, density_functional_exchange_acronym
 
 
 # Main function to perform the tasks
 def main():
     # Part 1: Fit an Equation of State
-    file_name = "chemical_symbol_crystal_symmetry_approximation_acronym.dat"
+    file_name = "Si.Fd-3m.GGA-PBEsol.volumes_energies.dat"
     chemical_symbol, crystal_symmetry, approximation_acronym = parse_file_name(file_name)
 
     # Read data

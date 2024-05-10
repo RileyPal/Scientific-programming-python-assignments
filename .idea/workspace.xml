@@ -6,6 +6,12 @@
   <component name="ChangeListManager">
     <list default="true" id="78b3dbee-a923-497c-ad01-204df1a1427a" name="Changes" comment="Final stuff">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/final_exam/Palermo_PHYS241FinalScript.py" beforeDir="false" afterPath="$PROJECT_DIR$/final_exam/Palermo_PHYS241FinalScript.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/final_exam/Part_1_alone.py" beforeDir="false" afterPath="$PROJECT_DIR$/final_exam/Part_1_alone.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/final_exam/calculate_bivariate_statistics.py" beforeDir="false" afterPath="$PROJECT_DIR$/final_exam/calculate_bivariate_statistics.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/final_exam/chemical_symbol_crystal_symmetry_approximation_acronym.dat" beforeDir="false" afterPath="$PROJECT_DIR$/final_exam/Si.Fd-3m.GGA-PBEsol.volumes_energies.dat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/final_exam/fit_curve_array.py" beforeDir="false" afterPath="$PROJECT_DIR$/final_exam/fit_curve_array.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/final_exam/read_two_columns_text.py" beforeDir="false" afterPath="$PROJECT_DIR$/final_exam/read_two_columns_text.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -80,11 +86,12 @@
     "Python.convert_temperature_to_celsius_between_file.executor": "Run",
     "Python.create_constants_dictionary.executor": "Run",
     "Python.create_stars_dictionary.executor": "Run",
+    "Python.default.executor": "Run",
     "Python.equation_of_state.executor": "Run",
     "Python.exp.executor": "Run",
     "Python.fifth_eigenvector.executor": "Run",
     "Python.final_ramet_powered_flight_model.executor": "Run",
-    "Python.fit_curve_array.executor": "Run",
+    "Python.fit_curve_array.executor": "Profiler",
     "Python.generate_coordinate_grid.executor": "Run",
     "Python.generate_matrix.executor": "Run",
     "Python.integrate_by_trapezoids_adaptively.executor": "Run",
@@ -150,10 +157,86 @@
       <set>
         <option value="PyRemoteDebugConfigurationType" />
         <option value="PythonConfigurationType" />
+        <option value="docs" />
         <option value="tests" />
       </set>
     </option>
     <option name="openRunningConfigInTab" value="true" />
+  </component>
+  <component name="RunManager">
+    <configuration name="Palermo_PHYS241FinalScript" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="Scientific-programming-python-assignments" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/final_exam" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/final_exam/Palermo_PHYS241FinalScript.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration default="true" type="PythonConfigurationType" factoryName="Python">
+      <module name="Scientific-programming-python-assignments" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="SDK_NAME" value="Python 3.12" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="true" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration default="true" type="Python.PyramidServer" factoryName="Pyramid server">
+      <module name="Scientific-programming-python-assignments" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="$USER_HOME$/AppData/Local/Programs/Python/Python312/python.exe" />
+      <option name="SDK_NAME" value="Python 3.12" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="launchJavascriptDebuger" value="false" />
+      <option name="additionalOptions" value="" />
+      <option name="browserUrl" value="" />
+      <option name="CONFIGURATION_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Python.Palermo_PHYS241FinalScript" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SharedIndexes">
     <attachedChunks>
@@ -205,6 +288,8 @@
       <workItem from="1715280697332" duration="6571000" />
       <workItem from="1715289877683" duration="891000" />
       <workItem from="1715291237380" duration="133000" />
+      <workItem from="1715292186117" duration="9684000" />
+      <workItem from="1715302884863" duration="6092000" />
     </task>
     <task id="LOCAL-00001" summary="progress on 1-9">
       <option name="closed" value="true" />
@@ -558,7 +643,15 @@
       <option name="project" value="LOCAL" />
       <updated>1715290678209</updated>
     </task>
-    <option name="localTasksCounter" value="45" />
+    <task id="LOCAL-00045" summary="Final stuff">
+      <option name="closed" value="true" />
+      <created>1715301980361</created>
+      <option name="number" value="00045" />
+      <option name="presentableId" value="LOCAL-00045" />
+      <option name="project" value="LOCAL" />
+      <updated>1715301980361</updated>
+    </task>
+    <option name="localTasksCounter" value="46" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -614,6 +707,11 @@
           <line>3</line>
           <option name="timeStamp" value="3" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/final_exam/Palermo_PHYS241FinalScript.py</url>
+          <line>6</line>
+          <option name="timeStamp" value="4" />
+        </line-breakpoint>
       </breakpoints>
       <default-breakpoints>
         <breakpoint type="javascript-exception">
@@ -629,9 +727,9 @@
     </breakpoint-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/Scientific_programming_python_assignments$equation_of_state.coverage" NAME="equation_of_state Coverage Results" MODIFIED="1715286440070" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/final_exam" />
+    <SUITE FILE_PATH="coverage/Scientific_programming_python_assignments$equation_of_state.coverage" NAME="equation_of_state Coverage Results" MODIFIED="1715293522378" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/final_exam" />
     <SUITE FILE_PATH="coverage/Scientific_programming_python_assignments$annotate_plot.coverage" NAME="annotate_plot Coverage Results" MODIFIED="1715188401645" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Final_review" />
-    <SUITE FILE_PATH="coverage/Scientific_programming_python_assignments$generate_matrix.coverage" NAME="generate_matrix Coverage Results" MODIFIED="1715285796833" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/final_exam" />
+    <SUITE FILE_PATH="coverage/Scientific_programming_python_assignments$generate_matrix.coverage" NAME="generate_matrix Coverage Results" MODIFIED="1715293457178" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/final_exam" />
     <SUITE FILE_PATH="coverage/experiment$convert_temperature.coverage" NAME="convert_temperature Coverage Results" MODIFIED="1710442489714" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/user_input_and_error_handling" />
     <SUITE FILE_PATH="coverage/experiment$calculate_vleocity_and_acceleration.coverage" NAME="calculate_vleocity_and_acceleration Coverage Results" MODIFIED="1710343111516" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/functions_and_branching" />
     <SUITE FILE_PATH="coverage/experiment$build_polynomial_from__product.coverage" NAME="build_polynomial_from _product Coverage Results" MODIFIED="1710254658212" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/functions_and_branching" />
@@ -639,20 +737,21 @@
     <SUITE FILE_PATH="coverage/Scientific_programming_python_assignments$animate_ball_trajectories.coverage" NAME="animate_ball_trajectories Coverage Results" MODIFIED="1711489828256" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/array_computing_and_curve_plotting" />
     <SUITE FILE_PATH="coverage/experiment$calculate_gaussian.coverage" NAME="calculate_gaussian Coverage Results" MODIFIED="1710268970199" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/functions_and_branching" />
     <SUITE FILE_PATH="coverage/experiment$convert_fahrenheit_temperature_to_celsius_from_command_line.coverage" NAME="convert_fahrenheit_temperature_to_celsius_from_command_line Coverage Results" MODIFIED="1710439485123" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/user_input_and_error_handling" />
-    <SUITE FILE_PATH="coverage/Scientific_programming_python_assignments$calculate_lowest_eigenvectors.coverage" NAME="calculate_lowest_eigenvectors Coverage Results" MODIFIED="1715286754838" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/final_exam" />
-    <SUITE FILE_PATH="coverage/Scientific_programming_python_assignments$fit_curve_array.coverage" NAME="fit_curve_array Coverage Results" MODIFIED="1715286037147" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/final_exam" />
+    <SUITE FILE_PATH="coverage/Scientific_programming_python_assignments$calculate_lowest_eigenvectors.coverage" NAME="calculate_lowest_eigenvectors Coverage Results" MODIFIED="1715293320476" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/final_exam" />
+    <SUITE FILE_PATH="coverage/Scientific_programming_python_assignments$fit_curve_array.coverage" NAME="fit_curve_array Coverage Results" MODIFIED="1715296905792" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/final_exam" />
     <SUITE FILE_PATH="coverage/Scientific_programming_python_assignments$plot_data_with_fit.coverage" NAME="plot_data_with_fit Coverage Results" MODIFIED="1715285830171" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/final_exam" />
     <SUITE FILE_PATH="coverage/Scientific_programming_python_assignments$module_test__type_.coverage" NAME="module_test_(type) Coverage Results" MODIFIED="1714678601791" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Final_review" />
-    <SUITE FILE_PATH="coverage/Scientific_programming_python_assignments$matrix_module.coverage" NAME="matrix_module Coverage Results" MODIFIED="1715286373385" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/final_exam" />
+    <SUITE FILE_PATH="coverage/Scientific_programming_python_assignments$matrix_module.coverage" NAME="matrix_module Coverage Results" MODIFIED="1715294917646" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/final_exam" />
     <SUITE FILE_PATH="coverage/experiment$calculate_egg_cook_time.coverage" NAME="calculate_egg_cook_time Coverage Results" MODIFIED="1708631317612" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$APPLICATION_CONFIG_DIR$/scratches" />
     <SUITE FILE_PATH="coverage/Scientific_programming_python_assignments$final_ramet_powered_flight_model.coverage" NAME="final_ramet_powered_flight_model Coverage Results" MODIFIED="1714072122464" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Project" />
     <SUITE FILE_PATH="coverage/experiment$scratch_4.coverage" NAME="scratch_4 Coverage Results" MODIFIED="1707502656721" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$APPLICATION_CONFIG_DIR$/scratches" />
     <SUITE FILE_PATH="coverage/experiment$table_temperature_conversion_and_approximation.coverage" NAME="table_temperature_conversion_and_approximation Coverage Results" MODIFIED="1709226086620" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Loops_and_Lists" />
     <SUITE FILE_PATH="coverage/experiment$sort_stars_data.coverage" NAME="sort_stars_data Coverage Results" MODIFIED="1710437656412" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/functions_and_branching" />
+    <SUITE FILE_PATH="coverage/Scientific_programming_python_assignments$default.coverage" NAME="default Coverage Results" MODIFIED="1715308956132" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
     <SUITE FILE_PATH="coverage/Scientific_programming_python_assignments$fill_arrays_vectorially.coverage" NAME="fill_arrays_vectorially Coverage Results" MODIFIED="1711390467237" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/array_computing_and_curve_plotting" />
     <SUITE FILE_PATH="coverage/Scientific_programming_python_assignments$read_and_plot_logarithmic_sum_output.coverage" NAME="read_and_plot_logarithmic_sum_output Coverage Results" MODIFIED="1712242334085" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/dictionaries_and_strings" />
     <SUITE FILE_PATH="coverage/Scientific_programming_python_assignments$exp.coverage" NAME="exp Coverage Results" MODIFIED="1715282116071" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/final_exam" />
-    <SUITE FILE_PATH="coverage/Scientific_programming_python_assignments$calculate_quadratics_fit.coverage" NAME="calculate_quadratics_fit Coverage Results" MODIFIED="1715286561312" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/final_exam" />
+    <SUITE FILE_PATH="coverage/Scientific_programming_python_assignments$calculate_quadratics_fit.coverage" NAME="calculate_quadratics_fit Coverage Results" MODIFIED="1715293429876" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/final_exam" />
     <SUITE FILE_PATH="coverage/experiment$add_two_numbers.coverage" NAME="add_two_numbers Coverage Results" MODIFIED="1707929509751" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/Scientific_programming_python_assignments$Main.coverage" NAME="Main Coverage Results" MODIFIED="1711571726493" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Project" />
     <SUITE FILE_PATH="coverage/Scientific_programming_python_assignments$WIP_ramjet_powered_flight.coverage" NAME="WIP_ramjet_powered_flight Coverage Results" MODIFIED="1713969299907" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Project" />
@@ -663,15 +762,15 @@
     <SUITE FILE_PATH="coverage/Scientific_programming_python_assignments$fill_arrays_by_for_loop.coverage" NAME="fill_arrays_by_for_loop Coverage Results" MODIFIED="1711390441359" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/array_computing_and_curve_plotting" />
     <SUITE FILE_PATH="coverage/Scientific_programming_python_assignments$read_two_columns_text.coverage" NAME="read_two_columns_text Coverage Results" MODIFIED="1715286405222" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/final_exam" />
     <SUITE FILE_PATH="coverage/experiment$convert_celsius_temperature_to_fahrenheit.coverage" NAME="convert_celsius_temperature_to_fahrenheit Coverage Results" MODIFIED="1709826854671" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/functions_and_branching" />
-    <SUITE FILE_PATH="coverage/Scientific_programming_python_assignments$Palermo_PHYS241FinalScript.coverage" NAME="Palermo_PHYS241FinalScript Coverage Results" MODIFIED="1715290188373" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/final_exam" />
+    <SUITE FILE_PATH="coverage/Scientific_programming_python_assignments$Palermo_PHYS241FinalScript.coverage" NAME="Palermo_PHYS241FinalScript Coverage Results" MODIFIED="1715309033400" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/final_exam" />
     <SUITE FILE_PATH="coverage/experiment$convert_fahrenheit_temperature_to_celsius_from_file.coverage" NAME="convert_fahrenheit_temperature_to_celsius_from_file Coverage Results" MODIFIED="1710439044936" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/user_input_and_error_handling" />
     <SUITE FILE_PATH="coverage/experiment$calculate_numerical_derivatives.coverage" NAME="calculate_numerical_derivatives Coverage Results" MODIFIED="1710274597201" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/functions_and_branching" />
-    <SUITE FILE_PATH="coverage/Scientific_programming_python_assignments$calculate_bivariate_statistics.coverage" NAME="calculate_bivariate_statistics Coverage Results" MODIFIED="1715285748487" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/final_exam" />
+    <SUITE FILE_PATH="coverage/Scientific_programming_python_assignments$calculate_bivariate_statistics.coverage" NAME="calculate_bivariate_statistics Coverage Results" MODIFIED="1715296831868" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/final_exam" />
     <SUITE FILE_PATH="coverage/Scientific_programming_python_assignments$plot_trajectory.coverage" NAME="plot_trajectory Coverage Results" MODIFIED="1711482001308" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/array_computing_and_curve_plotting" />
     <SUITE FILE_PATH="coverage/Scientific_programming_python_assignments$create_constants_dictionary.coverage" NAME="create_constants_dictionary Coverage Results" MODIFIED="1712158112005" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/dictionaries_and_strings" />
     <SUITE FILE_PATH="coverage/experiment$convert_temp.coverage" NAME="convert_temp Coverage Results" MODIFIED="1710443758330" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/user_input_and_error_handling" />
     <SUITE FILE_PATH="coverage/Scientific_programming_python_assignments$WIP_draft.coverage" NAME="WIP_draft Coverage Results" MODIFIED="1713902467797" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Project" />
-    <SUITE FILE_PATH="coverage/Scientific_programming_python_assignments$module_test__right_parenthesis_.coverage" NAME="module_test_(right_parenthesis) Coverage Results" MODIFIED="1715286348018" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/final_exam" />
+    <SUITE FILE_PATH="coverage/Scientific_programming_python_assignments$module_test__right_parenthesis_.coverage" NAME="module_test_(right_parenthesis) Coverage Results" MODIFIED="1715293249060" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/final_exam" />
     <SUITE FILE_PATH="coverage/Scientific_programming_python_assignments$VPython_00_and_01.coverage" NAME="VPython_00_and_01 Coverage Results" MODIFIED="1712254245269" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/VPython00_and01" />
     <SUITE FILE_PATH="coverage/experiment$construct_polynomial_from__product.coverage" NAME="construct_polynomial_from _product Coverage Results" MODIFIED="1710257947321" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/functions_and_branching" />
     <SUITE FILE_PATH="coverage/Scientific_programming_python_assignments$plot_wavepacket.coverage" NAME="plot_wavepacket Coverage Results" MODIFIED="1711490232903" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/array_computing_and_curve_plotting" />
@@ -681,7 +780,7 @@
     <SUITE FILE_PATH="coverage/Scientific_programming_python_assignments$birthday_station.coverage" NAME="birthday_station Coverage Results" MODIFIED="1712247945321" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/VPython00_and01" />
     <SUITE FILE_PATH="coverage/experiment$table_vertical_projectile_positions.coverage" NAME="table_vertical_projectile_positions Coverage Results" MODIFIED="1709662002372" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Loops_and_Lists" />
     <SUITE FILE_PATH="coverage/Scientific_programming_python_assignments$fill_gaussian_lists.coverage" NAME="fill_gaussian_lists Coverage Results" MODIFIED="1711390396036" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/array_computing_and_curve_plotting" />
-    <SUITE FILE_PATH="coverage/Scientific_programming_python_assignments$Part_1_alone.coverage" NAME="Part_1_alone Coverage Results" MODIFIED="1715286015445" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/final_exam" />
+    <SUITE FILE_PATH="coverage/Scientific_programming_python_assignments$Part_1_alone.coverage" NAME="Part_1_alone Coverage Results" MODIFIED="1715293035603" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/final_exam" />
     <SUITE FILE_PATH="coverage/Scientific_programming_python_assignments$unpowered_flight.coverage" NAME="unpowered_flight Coverage Results" MODIFIED="1712092691994" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Project" />
     <SUITE FILE_PATH="coverage/experiment$generate_coordinate_grid.coverage" NAME="generate_coordinate_grid Coverage Results" MODIFIED="1709661575935" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Loops_and_Lists" />
     <SUITE FILE_PATH="coverage/experiment$compute_heaviside.coverage" NAME="compute_heaviside Coverage Results" MODIFIED="1710435397476" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/functions_and_branching" />

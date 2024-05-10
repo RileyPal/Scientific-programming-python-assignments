@@ -16,7 +16,7 @@ def read_two_columns_text(chemical_symbol_crystal_symmetry_approximation_acronym
 
 
 if __name__ == "__main__":
-    filename = "chemical_symbol_crystal_symmetry_approximation_acronym.dat"
+    filename = "Si.Fd-3m.GGA-PBEsol.volumes_energies.dat"
     try:
         data = read_two_columns_text(filename)
         print(f"{data=}, shape={data.shape}")
